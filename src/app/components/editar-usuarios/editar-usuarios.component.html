@@ -1,0 +1,17 @@
+<div class="container card">
+    <form [formGroup]="formularioEditarUsuario" (ngSubmit)="guardarUser()">
+        <div class="formGroup">
+            <label for="nombre"><strong>Nombre</strong></label>
+            <input type="text" class="form-control" id="nombre" formControlName="nombre">
+        </div><br>
+        <div class="formGroup">
+            <label for="rol"><strong>ROL</strong></label>
+            <select name="rol" class="form-control" required="string" formControlName="rol">
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
+            </select>
+        </div><br>
+        <button *ngIf="!editando" type="button" class="btn btn-block" (click)="habilitar()">Editar</button>
+        <button *ngIf="editando" type="submit" class="btn btn-block">Guardar</button>
+    </form>
+</div>

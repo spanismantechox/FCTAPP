@@ -1,0 +1,15 @@
+div#ingreso{
+    position: absolute;;
+    width: 50%;
+    margin-left: 0%;
+}
+
+div#gasto{
+    position: absolute;
+    width: 50%;
+    margin-left: 50%;
+    margin-bottom: 0%;
+}
+button{
+    background-color: rgb(54, 161, 161);
+}

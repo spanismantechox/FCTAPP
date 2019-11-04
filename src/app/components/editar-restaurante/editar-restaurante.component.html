@@ -1,0 +1,30 @@
+<div class="container card">    
+    <form [formGroup]="formModRestaurante" (ngSubmit)="guardarRest()" >
+        <div class="formGroup">
+            <label for="nombre"> <strong> Nombre del restaurante</strong></label>
+            <input type="text" class="form-control" id="nombre" formControlName="nombre" >
+        </div><br>
+        <div class="formGroup">
+            <label for="direccion"><strong>Dirección</strong></label>
+            <input type="text" class="form-control" id="direccion" formControlName="direccion">
+        </div><br>
+        <div class="formGroup">
+            <label for="telefono"><strong>Telefóno</strong></label>
+            <input type="text" class="form-control" id="telefono" formControlName="telefono">
+        </div><br>
+        <div class="formGroup">
+            <label for="cif"><strong>CIF</strong></label>
+            <input type="text" class="form-control" id="cif" formControlName="cif">
+        </div><br>
+        <div class="formGroup">
+            <label for="cp"><strong>Código Postal</strong></label>
+            <input type="text" class="form-control" id="cp" formControlName="cp">
+        </div><br>
+        <div class="formGroup">
+            <label for="nombreFiscal"><strong>Nombre Físcal</strong> </label>
+            <input type="text" class="form-control" id="nombreFiscal" formControlName="nombreFiscal">
+        </div><br>
+        <button *ngIf="!editing" type="button" class="btn  btn-block" (click)="enableForm()">Editar</button>
+        <button *ngIf="editing" type="submit" class="btn btn-block">Guardar</button>
+    </form>
+</div>

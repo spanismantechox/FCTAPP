@@ -1,0 +1,4 @@
+<app-menu></app-menu>
+<h1>Listado de usuarios</h1>
+<app-error *ngIf="errorUsuario" [errorMessage]="errorMessage"></app-error>
+<app-editar-usuarios (guardar)="modificar($event)" *ngFor="let usuario of listaUser" [usuario]="usuario"></app-editar-usuarios>

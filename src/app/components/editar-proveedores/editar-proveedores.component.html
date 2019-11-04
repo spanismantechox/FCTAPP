@@ -1,0 +1,14 @@
+<div class="container card">
+    <form [formGroup]="formularioEditarProveedor" (ngSubmit)="guardarProv()">
+        <div class="formGroup">
+            <label for="nombre"><strong>Nombre:</strong></label>
+            <input type="text" class="form-control" id="nombre" formControlName="nombre">
+        </div><br>
+        <div class="formGroup">
+            <label for="telefono"><strong>Telefóno</strong></label>
+            <input type="text" class="form-control" id="telefono" formControlName="telefono">
+        </div><br>
+        <button *ngIf="!editando"  type="button" class="btn btn-block" (click)="habilitar()">Editar</button>
+        <button *ngIf="editando" type="submit" class="btn btn-block">Guardar</button>
+    </form>
+</div>

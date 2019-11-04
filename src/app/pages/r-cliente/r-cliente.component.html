@@ -1,0 +1,29 @@
+<app-menu></app-menu>
+
+<div class="container">
+    <h2>Registro de Clientes</h2>
+    <app-error *ngIf="errorCliente" [errorMessage]="errorMessage"></app-error>
+    <form [formGroup]="formularioRegistroCliente" (ngSubmit)="crearCliente()">
+        <div class="formGroup">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" formControlName="nombre">
+        </div><br>
+        <div class="formGroup">
+            <label for="email">Correo electrónico</label>
+            <input type="email" class="form-control" id="email" formControlName="email">
+        </div><br>
+        <div class="formGroup">
+            <label for="cif">CIF</label>
+            <input type="text" class="form-control" id="cif" formControlName="cif">
+        </div><br>
+        <div class="formGroup">
+            <label for="direccion">Dirección</label>
+            <input type="text" class="form-control" id="direccion" formControlName="direccion">
+        </div><br>
+        <div class="formGroup">
+            <label for="cp">Código Postal</label>
+            <input type="text" class="form-control" id="cp" formControlName="cp">
+        </div><br>
+        <button type="submit" class="btn">Registrar</button>
+    </form>
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+  <app-error *ngIf="errorLogin" [errorMessage]="errorMessage"></app-error>
+  <form [formGroup]="formularioLogin" (ngSubmit)="onSubmit()" class="col-md-4 col-sm-6 col-12">
+    <div class="form-group">
+      <label for="name">Usuario</label>
+      <input type="text" class="form-control" id="nombre" formControlName="nombre" required>
+    </div>
+
+    <div class="form-group">
+      <label for="alterEgo">Contraseña</label>
+      <input type="password" class="form-control" id="password" formControlName="password" required>
+    </div>
+
+    <div class="form-group">
+      <input type="checkbox" id="recordar" name="recordar" formControlName="recordar">
+      <label for="recordar" id="lbl-recordar">Recordar usuario</label>
+    </div>
+    <button type="submit" class="btn btn-success">Login</button>
+  </form>
+</div>

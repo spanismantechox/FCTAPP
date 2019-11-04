@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" [routerLink]="['/home']"><img src="assets/img/logo.png" width="30" height="30"  ></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" [routerLink]="['/ingreso']">Ingreso / Gasto <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/cFactura']">Crear facturas</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Registro
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" [routerLink]="['/rCliente']">Clientes</a>
+                <a class="dropdown-item" [routerLink]="['/rProveedor']">Proveedores</a>
+                <a class="dropdown-item" [routerLink]="['/rUsuario']">Usuarios</a>
+                <a class="dropdown-item" [routerLink]="['/rRestaurante']">Restaurantes</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Listado
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" [routerLink]="['/restaurante']">Restaurantes</a>
+                      <a class="dropdown-item" [routerLink]="['/cliente']">Clientes</a>
+                      <a class="dropdown-item" [routerLink]="['/proveedor']">Proveedores</a>
+                      <a class="dropdown-item" [routerLink]="['/usuario']">Usuarios</a>
+                      <a class="dropdown-item" [routerLink]="['/gasto']">Gastos</a>
+                      <a class="dropdown-item" [routerLink]="['/lIngreso']">Ingresos</a>
+                      <a class="dropdown-item" [routerLink]="['/lFactura']">Facturas</a>
+                    </div>
+                  </li>            
+          </ul>
+          <div class="form-inline my-2 my-lg-0">
+            
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]='buscarTexto' *ngIf="mostrarBuscador">
+            <button class="btn mr-sm-2" type="button" (click)="buscar()" *ngIf="mostrarBuscador">Buscar</button>
+            <button class="btn mr-sm-2" type="button" (click)="logout()">Logout</button>
+            
+          </div>
+        </div>
+</nav>

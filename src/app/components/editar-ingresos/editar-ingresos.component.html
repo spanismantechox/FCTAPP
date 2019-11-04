@@ -1,0 +1,24 @@
+<div class="container card">
+    <form [formGroup]="formularioEditarIngreso" (ngSubmit)="guardarIngreso()">
+        <div class="formGroup">
+            <label for="fecha"><strong>Fecha</strong></label>
+            <input type="text" class="form-control" id="fecha" formControlName="fecha">
+        </div><br>
+        <div>
+            <label for="cantidad"><strong>Cantidad</strong></label>
+            <input type="number" class="form-control" id="cantidad" formControlName="cantidad">
+        </div><br>
+        <div>
+            <label for="nombre_restaurante"><strong>Nombre del restaurante</strong></label>
+            <input type="text" class="form-control" id="nombre_restaurante" formControlName="nombre_restaurante" [value]="ingreso.nombre_restaurante">
+        </div><br>
+        <div>
+            <label for="fuente"><strong>Fuente</strong></label>
+            <input type="text" class="form-control" id="fuente" formControlName="fuente" [value]="ingreso.fuente">
+            
+        </div><br>
+        <button *ngIf="!editando" type="button" class="btn btn-block" (click)="habilitar()">Editar</button>
+        <button *ngIf="editando" type="submit" class="btn btn-block">Guardar</button>
+        <button *ngIf="!editando" type="button" class="btn btn-block" (click)="borrar()">Eliminar</button >
+    </form>
+</div>

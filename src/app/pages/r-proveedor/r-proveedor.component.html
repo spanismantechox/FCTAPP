@@ -1,0 +1,17 @@
+<app-menu></app-menu>
+
+<div class="container">
+    <h2>Registro de Proveedores</h2>
+    <app-error *ngIf="errorProveedor" [errorMessage]="errorMessage"></app-error>
+    <form [formGroup]="formularioRegistroProveedor" (ngSubmit)="crearProveedor()">
+        <div class="formGroup">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" formControlName="nombre">
+        </div><br>
+        <div class="formGroup">
+            <label for="telefono">Teléfono</label>
+            <input type="text" class="form-control" id="telefono" formControlName="telefono">
+        </div><br>
+        <button type="submit" class="btn">Registrar</button>
+    </form>
+</div>

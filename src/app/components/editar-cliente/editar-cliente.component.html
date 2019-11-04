@@ -1,0 +1,26 @@
+<div class="container card">
+        <form [formGroup]="formularioListaCliente" (ngSubmit)="guardarCli()">
+            <div class="formGroup">
+                <label for="nombre"><strong>Nombre del cliente</strong></label>
+                <input type="text" class="form-control" id="nombre" formControlName="nombre">
+            </div><br>
+            <div class="formGroup">
+                <label for="email"><strong>Correo electrónico</strong></label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+            </div><br>
+            <div class="formGroup">
+                <label for="cif"><strong>CIF </strong></label>
+                <input type="text" class="form-control" id="cif" formControlName="cif">
+            </div><br>
+            <div class="formGroup">
+                <label for="direccion"><strong>Direeción</strong></label>
+                <input type="text" class="form-control" id="direccion" formControlName="direccion">
+            </div><br>
+            <div class="formGroup">
+                <label for="cp"><strong>Código Postal</strong></label>
+                <input type="text" class="form-control" id="cp" formControlName="cp">
+            </div><br>
+            <button *ngIf="!editando" type="button"  class="btn btn-block" (click)="habilitar()">Editar</button>
+            <button *ngIf="editando" type="submit" class="btn btn-block">Guardar</button>
+        </form>
+    </div>

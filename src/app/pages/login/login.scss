@@ -1,0 +1,46 @@
+.container h1 {
+    text-align: center;
+}
+.container form {
+    position: absolute;
+    margin: 0 auto;
+    top: calc(50% - 200px);
+    left: calc(50% - 10%);
+    width: 20%;
+    height: 400px;
+    border: 1px solid black;
+    padding: 45px;
+    border-radius: 5px;
+    
+    -webkit-box-shadow: 3px 2px 12px -4px rgba(0,0,0,0.65);
+    -moz-box-shadow: 3px 2px 12px -4px rgba(0,0,0,0.65);
+    box-shadow: 3px 2px 12px -4px rgba(0,0,0,0.65);
+    font-size: 1.2rem;
+}
+
+.container form .btn{
+    width: 100%;
+    background-color: rgb(54, 161, 161);
+    border-color: black;
+    color:black
+}
+
+.container form .btn:hover {
+    color: black;
+    background-color: rgb(54, 161, 161);
+    border-color:black;
+}
+
+.container form .btn:focus {
+    outline:0!important;
+    border: none!important;
+    box-shadow: none;
+}
+
+#lbl-recordar{
+    margin-left: 15px;
+}
+
+#recordar {
+    transform: scale(1.3)
+}

@@ -1,0 +1,10 @@
+button{
+    background-color: rgb(54, 161, 161);
+    
+    
+}
+div.card{    
+    margin: 10px 10px;
+    display: inline-block;   
+    width: 20rem;
+}

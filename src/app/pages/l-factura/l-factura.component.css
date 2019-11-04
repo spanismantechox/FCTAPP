@@ -1,0 +1,8 @@
+.card{
+    display: inline-block;
+    margin-left: 20px;
+    text-align: center;
+}
+button{
+    background-color: rgb(54, 161, 161);  
+}

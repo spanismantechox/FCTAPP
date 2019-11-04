@@ -1,0 +1,21 @@
+<div class="container">
+    
+    <div class="row">
+            <h1>Facturas creadas por mes</h1>
+        <div class="calendar col-12">
+            <kendo-calendar (activeViewDateChange)="onActiveDateChange($event)"
+                (valueChange)="onChange($event)">
+                <kendo-calendar-messages today="Hoy" november="Noviembre">
+                </kendo-calendar-messages>
+            </kendo-calendar>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grafica  col-12">
+            <h1>Total de ventas por fuente de ingresos</h1>
+            <div id="chartdiv">
+            </div>
+        </div>
+
+    </div>
+</div>

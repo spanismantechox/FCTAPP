@@ -1,0 +1,21 @@
+.calendar{
+    margin: 50px auto;
+    width: 800px;
+    text-align: center;
+  
+}/*
+.grafica{
+    margin-top: 0px;
+    margin-left: 500px;
+    position: absolute;
+    width: 500px;
+
+}*/
+/*
+.grafic{
+    position: relative;
+    margin-top: 400px;
+}*/
+#chartdiv {
+    height: 300px;
+}
