@@ -1,21 +1,42 @@
 <div class="container">
-    
+
     <div class="row">
-            <h1>Facturas creadas por mes</h1>
+        <div class="col-12">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a id="tab1" class="nav-link active" href="#" (click)="cambiaTab(1)">Total</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab3" class="nav-link" href="#" (click)="cambiaTab(3)">Anual</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab2" class="nav-link" href="#" (click)="cambiaTab(2)">Mensual</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row filaGrafica">
+        <h1>{{ title }} <p *ngIf="tab==3">en el año: {{year}}</p>
+            <p *ngIf="tab==2">en el mes: {{ month+'/10/2019' | date:'MMMM'}}</p>
+        </h1>
+        <button *ngIf="tab!=1" class="btn atras" (click)="numeroMenos(tab)">&lt;</button>
+        <button *ngIf="tab!=1" class="btn adelante" (click)="numeroMas(tab)">&gt;</button>
+        <div class="grafica  col-12">
+            <div id="chartdiv">
+            </div>
+            <div *ngIf="isCeroTodo" class="mensaje">
+                <h1>Lo sentimos no tiene datos</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row rowCalendar">
+        <h1>Facturas creadas por mes</h1>
         <div class="calendar col-12">
-            <kendo-calendar (activeViewDateChange)="onActiveDateChange($event)"
-                (valueChange)="onChange($event)">
+            <kendo-calendar (activeViewDateChange)="onActiveDateChange($event)" (valueChange)="onChange($event)">
                 <kendo-calendar-messages today="Hoy" november="Noviembre">
                 </kendo-calendar-messages>
             </kendo-calendar>
         </div>
-    </div>
-    <div class="row">
-        <div class="grafica  col-12">
-            <h1>Total de ventas por fuente de ingresos</h1>
-            <div id="chartdiv">
-            </div>
-        </div>
-
     </div>
 </div>

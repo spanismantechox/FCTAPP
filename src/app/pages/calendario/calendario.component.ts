@@ -4,7 +4,7 @@ import 'hammerjs';
 import { IngresoService } from 'src/app/services/ingreso.service';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
-import { FacturaService } from 'src/app/services/factura.service';
+import frozen from "@amcharts/amcharts4/themes/frozen";
 
 @Component({
   selector: 'app-calendario',
@@ -14,64 +14,55 @@ import { FacturaService } from 'src/app/services/factura.service';
 export class CalendarioComponent implements OnInit {
 
   public data: any[] = [];
-
-  public labelContent(e: any): string {
-    return e.category;
-  }
-  public legendLabels(data): string {
-    return data.text + " " + data.value + " €";
-  }
+  public title: string = "Total de ventas por fuente";
+  public tab = 1;
+  public periodo = "total";
+  public chart;
+  public month = (new Date().getMonth() + 1);
+  
+  public year = (new Date()).getFullYear();
+  public isCeroTodo = false;
   @ViewChild("calendar", { static: true }) public calendar: IgxCalendarComponent;
   @ViewChild("alert", { static: true }) public dialog: IgxDialogComponent;
-  
+
   constructor(
     private ingresoService: IngresoService,
-    private facturaService: FacturaService,
-    
   ) { }
-    
-  ngOnInit() {
 
-    setTimeout(()=> {
-      this.setSelectedDays();
-    }, 1000)
-    
-    this.ingresoService.fuentesIngreso().subscribe((data: any) => {
-      let arr = Object.keys(data);
-      for(let s of arr) {
-        this.data.push({
-          fuente: s, valor: data[s]
-        })
-      }  
-    
+  private async initializeChart() {
+    this.chart = am4core.create("chartdiv", am4charts.PieChart3D);
 
-    
-    
-    let chart = am4core.create("chartdiv", am4charts.PieChart3D);
-    chart.hiddenState.properties.opacity = 1; 
-    chart.legend = new am4charts.Legend();
-    
-    chart.data = this.data;
-    
-    chart.innerRadius = 50;
-    
-    let series = chart.series.push(new am4charts.PieSeries3D());
+    this.chart.hiddenState.properties.opacity = 0;
+    this.chart.legend = new am4charts.Legend();
+    this.chart.innerRadius = 50;
+
+    let series = this.chart.series.push(new am4charts.PieSeries3D());
     series.dataFields.value = "valor";
     series.dataFields.category = "fuente";
-        
-    //am4core.useTheme(am4themes_animated)
-     
-    })
+    series.slices.template.propertyFields.fill = "color";
+    series.slices.template.stroke = am4core.color("#7c8080");
+    series.slices.template.strokeWidth = 1;
+    series.slices.template.strokeOpacity = 1;
+  }
+  ngOnInit() {
+
+    setTimeout(() => {
+      this.setSelectedDays();
+      this.initializeChart();
+      this.graficaTotal(this.periodo);
+    }, 1000)
+
   }
 
   onActiveDateChange(e) {
     console.log(e)
   }
-  
+
   onChange(e) {
   }
 
-  setSelectedDays(){
+  setSelectedDays() {
+
     let list: any = document.getElementsByClassName("k-calendar-view k-calendar-monthview");
     for (let item of list) {
       let dias = item.children[2].children[0].children[1].children;
@@ -81,9 +72,9 @@ export class CalendarioComponent implements OnInit {
             var reg = /(\<!--.*?\-->)/g;
             let diaCal = dia.children[0].innerHTML.replace(/(\r\n|\n|\r)/gm, "");
             diaCal = diaCal.replace(reg, "");
-            debugger;
-            let fac= this.facturaService.listaFacturaMesAnho(diaCal);
-            if(diaCal == fac) {
+
+
+            if (diaCal == 1) {
               dia.classList.add("k-state-selected")
             }
           }
@@ -92,5 +83,192 @@ export class CalendarioComponent implements OnInit {
       }
     }
   }
-  
+  numeroMas(tab) {
+    //MENSUAL
+    
+    console.log(this.month);
+    if (tab == 2) {
+      this.periodo = "mensual";
+      this.month = this.month + 1;
+      
+      if (this.month > 12) {
+        this.month = 1;
+      }
+      this.graficaMensual(this.periodo, this.month);
+    }
+    //ANUAL
+    else if (tab == 3) {
+      this.periodo = "anual";
+      this.year = this.year + 1;
+      if (this.year > (new Date()).getFullYear()) {
+        this.year = (new Date()).getFullYear()
+      }
+      this.graficaAnual(this.periodo, this.year);
+    }
+
+  }
+
+  numeroMenos(tab) {
+    if (tab == 2) {
+      this.periodo = "mensual";
+      this.month = this.month - 1;
+      if (this.month <= 0) {
+        this.month = 12;
+      }
+      this.graficaMensual(this.periodo, this.month);
+    }
+    else if (tab == 3) {
+      this.periodo = "anual";
+      this.year = this.year - 1;
+      this.graficaAnual(this.periodo, this.year);
+    }
+  }
+
+  cambiaTab(tab) {
+    document.getElementById("tab1").classList.remove("active")
+    document.getElementById("tab2").classList.remove("active")
+    document.getElementById("tab3").classList.remove("active")
+    document.getElementById("tab" + tab).classList.add("active")
+    this.tab = tab;
+
+    switch (tab) {
+      case 1:
+        this.title = "Total de ventas por fuente";
+        this.periodo = "total";
+        this.graficaTotal(this.periodo);
+        break;
+      case 2:
+        this.title = "Mensual de ventas por fuente";
+        this.periodo = "mensual";
+        this.graficaMensual(this.periodo, this.month);
+        break;
+      case 3:
+        this.title = "Anual de ventas por fuente";
+        this.periodo = "anual";
+        this.graficaAnual(this.periodo, this.year);
+        break;
+    }
+    return false;
+  }
+
+  async graficaTotal(periodo) {
+    this.isCeroTodo=false;
+    if (this.chart === null) {
+      await this.initializeChart();
+    }
+    this.ingresoService.fuentesIngreso(periodo, 0).subscribe((data: any) => {
+      this.data = [];
+      let arr = Object.keys(data);
+      for (let s of arr) {
+        let color = '';
+        if (s === 'JustEat') {
+          color = "#46cccc";
+        }
+        else if (s === 'Tarjeta') {
+          color = "#7286cc";
+        } else if (s === 'Uber') {
+          color = "#4c9999";
+        }
+        else if (s === 'Efectivo') {
+          color = "#abbaff";
+        }
+        else if (s === 'Tenedor') {
+          color = "#95B1B0";
+        }
+
+        if(data[s] > 0 )
+        this.data.push({
+          fuente: s, valor: data[s], color: color
+        })
+      }
+      this.chart.data = this.data;
+    })
+  }
+
+  async graficaMensual(periodo, month) {
+    if (this.chart === null) {
+      await this.initializeChart();
+    }
+    this.ingresoService.fuentesIngreso(periodo, month).subscribe((data: any) => {
+      this.data = [];
+      this.isCeroTodo=true;
+      let arr = Object.keys(data);
+      for (let s of arr) {
+        let color = '';
+        if (s === 'JustEat') {
+          color = "#46cccc";
+        }
+        else if (s === 'Tarjeta') {
+          color = "#7286cc";
+        } else if (s === 'Uber') {
+          color = "#4c9999";
+        }
+        else if (s === 'Efectivo') {
+          color = "#abbaff";
+        }
+        else if (s === 'Tenedor') {
+          color = "#95B1B0";
+        }
+        if(data[s]>0)
+          this.data.push({
+            fuente: s, valor: data[s], color: color
+          })
+        if (data[s] > 0) {
+          this.isCeroTodo = false;
+        }
+      }
+
+      this.chart.data = this.data;
+
+      if (this.isCeroTodo) {
+        this.chart = null;
+        document.getElementById("chartdiv").innerHTML = "";
+       // document.getElementById("chartdiv").style.height ="0px";
+      } 
+    })
+
+  }
+  graficaAnual(periodo, year) {
+    if (this.chart === null) {
+      this.initializeChart();
+    }
+    this.ingresoService.fuentesIngreso(periodo, year).subscribe((data: any) => {
+      this.isCeroTodo=true;
+      this.data = [];
+      let arr = Object.keys(data);
+      for (let s of arr) {
+        let color = '';
+        if (s === 'JustEat') {
+          color = "#46cccc";
+        }
+        else if (s === 'Tarjeta') {
+          color = "#7286cc";
+        } else if (s === 'Uber') {
+          color = "#4c9999";
+        }
+        else if (s === 'Efectivo') {
+          color = "#abbaff";
+        }
+        else if (s === 'Tenedor') {
+          color = "#95B1B0";
+        }
+
+        if(data[s]>0)
+          this.data.push({
+            fuente: s, valor: data[s], color: color
+          })
+        if (data[s] > 0) {
+          this.isCeroTodo = false;
+        }
+      }
+      this.chart.data = this.data;
+      if (this.isCeroTodo) {
+        this.chart = null;
+        document.getElementById("chartdiv").innerHTML = "";
+      //  document.getElementById("chartdiv").style.height ="0px";
+      } 
+    })
+
+
+  }
 }

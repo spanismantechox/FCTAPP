@@ -6,3 +6,6 @@ body {
 .container {
     padding: 3rem;
 }
+h1{
+    margin: 0 auto;
+}

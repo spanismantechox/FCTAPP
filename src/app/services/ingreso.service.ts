@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Ingresos, Ingreso } from '../interfaces/ingresos';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -32,7 +32,10 @@ export class IngresoService {
     return this.http.delete(`${environment.urlServicios}ingreso/del/${ingreso}`);
   }
 
-  public fuentesIngreso() {
-    return this.http.get(`${environment.urlServicios}ingreso/fuentes-ingreso`);
+  public fuentesIngreso(periodo:any, numero:any) {
+    let params = new HttpParams();
+    params = params.append('periodo', periodo);
+    params = params.append('numero', numero);
+    return this.http.get(`${environment.urlServicios}ingreso/fuentes-ingreso/`,{params: params});
   }
 }
