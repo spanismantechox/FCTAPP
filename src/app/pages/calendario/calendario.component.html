@@ -1,7 +1,6 @@
-<div class="container">
-
-    <div class="row">
-        <div class="col-12">
+<div class="container row">
+    <div class="col-12">
+        <div >
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a id="tab1" class="nav-link active" href="#" (click)="cambiaTab(1)">Total</a>
@@ -16,13 +15,14 @@
         </div>
     </div>
 
-    <div class="row filaGrafica">
-        <h1>{{ title }} <p *ngIf="tab==3">en el año: {{year}}</p>
-            <p *ngIf="tab==2">en el mes: {{ month+'/10/2019' | date:'MMMM'}}</p>
-        </h1>
-        <button *ngIf="tab!=1" class="btn atras" (click)="numeroMenos(tab)">&lt;</button>
-        <button *ngIf="tab!=1" class="btn adelante" (click)="numeroMas(tab)">&gt;</button>
-        <div class="grafica  col-12">
+    <div class="col-12 filaGrafica">
+        <div class="grafica  ">
+            <h1>{{ title }} <p *ngIf="tab==3">en el año: {{year}}</p>
+                <p *ngIf="tab==2">en el mes: {{ month+'/10/2019' | date:'MMMM'}}</p>
+            </h1>
+            <button *ngIf="tab!=1" class="btn atras" (click)="numeroMenos(tab)">&lt;</button>
+            <button *ngIf="tab!=1" class="btn adelante" (click)="numeroMas(tab)">&gt;</button>
+
             <div id="chartdiv">
             </div>
             <div *ngIf="isCeroTodo" class="mensaje">
@@ -30,9 +30,10 @@
             </div>
         </div>
     </div>
-    <div class="row rowCalendar">
-        <h1>Facturas creadas por mes</h1>
-        <div class="calendar col-12">
+    <div class=" col-12 rowCalendar">
+
+        <div class="calendar">
+            <h1>Facturas creadas por mes</h1>
             <kendo-calendar (activeViewDateChange)="onActiveDateChange($event)" (valueChange)="onChange($event)">
                 <kendo-calendar-messages today="Hoy" november="Noviembre">
                 </kendo-calendar-messages>

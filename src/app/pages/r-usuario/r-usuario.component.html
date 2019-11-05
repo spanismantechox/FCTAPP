@@ -1,23 +1,25 @@
 <app-menu></app-menu>
-<div class="container">
-    <h2>Registro de Usuarios</h2>
-    <app-error *ngIf="errorUsuario" [errorMessage]="errorMessage"></app-error>
-    <form [formGroup]="formularioRegistroUsuario" (ngSubmit)="altaUsuario()">
-        <div class="formGroup">
-            <label for="nombre">Nombre del Usuario</label>
-            <input type="text" class="form-control" id="nombre" formControlName="nombre">
-        </div><br>
-        <div class="formGroup">
-            <label for="contrasena">Contraseña</label>
-            <input type="password" class="form-control" id="contrasena" formControlName="contrasena">
-        </div><br>
-        <div>
-            <label for="rol">Rol del usuario</label>
-            <select name="rol" class="form-control" required="string" formControlName="rol">
-                <option value="Admin">Admin</option>
-                <option value="User">User</option>
-            </select>
-        </div><br>
-        <button type="submit" class="btn">Registrar</button>
-    </form>
+<div class="container row">
+    <div class="col-12">
+        <h2>Registro de Usuarios</h2>
+        <app-error *ngIf="errorUsuario" [errorMessage]="errorMessage"></app-error>
+        <form [formGroup]="formularioRegistroUsuario" (ngSubmit)="altaUsuario()">
+            <div class="formGroup">
+                <label for="nombre">Nombre del Usuario</label>
+                <input type="text" class="form-control" id="nombre" formControlName="nombre">
+            </div><br>
+            <div class="formGroup">
+                <label for="contrasena">Contraseña</label>
+                <input type="password" class="form-control" id="contrasena" formControlName="contrasena">
+            </div><br>
+            <div>
+                <label for="rol">Rol del usuario</label>
+                <select name="rol" class="form-control" required="string" formControlName="rol">
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                </select>
+            </div><br>
+            <button type="submit" class="btn">Registrar</button>
+        </form>
+    </div>
 </div>

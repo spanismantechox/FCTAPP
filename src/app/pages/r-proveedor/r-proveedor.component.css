@@ -1,8 +1,7 @@
 .container{
-    position: relative;
-    margin-left: 500px;
     width:500px;
 }
 button{
     background-color: rgb(54, 161, 161);
+    color:white;
 }

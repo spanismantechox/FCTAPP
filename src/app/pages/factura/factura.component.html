@@ -1,107 +1,116 @@
 <app-menu></app-menu>
-<h1>Crear Facturas</h1>
+<div class="row container">
+    <div class="col-12">
+        <h1>Crear Facturas</h1>
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
 
-            <form [formGroup]="formularioFactura">
-                <div class="formGroup">
-                    <label for="fecha"><strong>Fecha</strong></label>
-                    <input type="date" class="form-control" id="fecha" formControlName="fecha">
+                    <form [formGroup]="formularioFactura">
+                        <div class="formGroup">
+                            <label for="fecha"><strong>Fecha</strong></label>
+                            <input type="date" class="form-control" id="fecha" formControlName="fecha">
+                        </div>
+                        <div class="formGroup">
+                            <label for="concepto"><strong>Concepto</strong></label>
+                            <input type="text" class="form-control" id="concepto" formControlName="concepto">
+                        </div>
+                        <div class="formGroup">
+                            <label for="iva"><strong>IVA</strong></label>
+                            <input type="number" class="form-control" id="iva" formControlName="iva">
+                        </div>
+                        <div class="formGroup">
+                            <label for="totalC"><strong>Total concepto</strong></label>
+                            <input type="number" class="form-control" id="totalC" formControlName="totalC">
+                        </div>
+                        <div class="formGroup">
+                            <label for="totalF"><strong>Total factura</strong></label>
+                            <input type="number" class="form-control" id="totalF" formControlName="totalF">
+                        </div><br>
+                        <button type="button" class="btn btn-block" (click)="siguiente(0)">Siguiente</button>
+                    </form>
                 </div>
-                <div class="formGroup">
-                    <label for="concepto"><strong>Concepto</strong></label>
-                    <input type="text" class="form-control" id="concepto" formControlName="concepto">
-                </div>
-                <div class="formGroup">
-                    <label for="iva"><strong>IVA</strong></label>
-                    <input type="number" class="form-control" id="iva" formControlName="iva">
-                </div>
-                <div class="formGroup">
-                    <label for="totalC"><strong>Total concepto</strong></label>
-                    <input type="number" class="form-control" id="totalC" formControlName="totalC">
-                </div>
-                <div class="formGroup">
-                    <label for="totalF"><strong>Total factura</strong></label>
-                    <input type="number" class="form-control" id="totalF" formControlName="totalF">
-                </div><br>
-                <button type="button" class="btn btn-block" (click)="siguiente(0)">Siguiente</button>
-            </form>
-        </div>
-        <div class="carousel-item">
-            <form [formGroup]="formularioRestaurante">
+            </div>
+            <div class="col-12">
+                <div class="carousel-item">
+                    <form [formGroup]="formularioRestaurante">
 
-                <div class="formGroup">
-                    <label for="restauranteId"><strong>Nombre del restaurante</strong></label>
-                    <select name="restauranteId" class="form-control" required="string" formControlName="restauranteId"
-                        (change)="cambioRestaurante()">
-                        <option *ngFor="let restaurante of lista" [value]="restaurante.id">{{restaurante.nombre}}
-                        </option>
-                    </select>
+                        <div class="formGroup">
+                            <label for="restauranteId"><strong>Nombre del restaurante</strong></label>
+                            <select name="restauranteId" class="form-control" required="string"
+                                formControlName="restauranteId" (change)="cambioRestaurante()">
+                                <option *ngFor="let restaurante of lista" [value]="restaurante.id">
+                                    {{restaurante.nombre}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="formGroup">
+                            <label for="direccion"><strong>Dirección</strong></label>
+                            <input type="text" class="form-control" id="direccion" formControlName="direccion">
+                        </div>
+                        <div class="formGroup">
+                            <label for="telefono"><strong>Telefóno</strong></label>
+                            <input type="text" class="form-control" id="telefono" formControlName="telefono">
+                        </div>
+                        <div class="formGroup">
+                            <label for="cif"><strong>CIF</strong></label>
+                            <input type="text" class="form-control" id="cif" formControlName="cif">
+                        </div>
+                        <div class="formGroup">
+                            <label for="cp"><strong>Código postal</strong></label>
+                            <input type="text" class="form-control" id="cp" formControlName="cp">
+                        </div>
+                        <div class="formGroup">
+                            <label for="noF"><strong>Nombre Físcal</strong></label>
+                            <input type="text" class="form-control" id="noF" formControlName="noF">
+                        </div><br>
+                        <button type="button" class="btn btn-block" (click)="siguiente(1)">Siguiente</button>
+                    </form>
                 </div>
-                <div class="formGroup">
-                    <label for="direccion"><strong>Dirección</strong></label>
-                    <input type="text" class="form-control" id="direccion" formControlName="direccion">
-                </div>
-                <div class="formGroup">
-                    <label for="telefono"><strong>Telefóno</strong></label>
-                    <input type="text" class="form-control" id="telefono" formControlName="telefono">
-                </div>
-                <div class="formGroup">
-                    <label for="cif"><strong>CIF</strong></label>
-                    <input type="text" class="form-control" id="cif" formControlName="cif">
-                </div>
-                <div class="formGroup">
-                    <label for="cp"><strong>Código postal</strong></label>
-                    <input type="text" class="form-control" id="cp" formControlName="cp">
-                </div>
-                <div class="formGroup">
-                    <label for="noF"><strong>Nombre Físcal</strong></label>
-                    <input type="text" class="form-control" id="noF" formControlName="noF">
-                </div><br>
-                <button type="button" class="btn btn-block" (click)="siguiente(1)">Siguiente</button>
-            </form>
-        </div>
-        <div class="carousel-item">
-            <form [formGroup]="formularioCliente">
+            </div>
+            <div class="col-12">
+                <div class="carousel-item">
+                    <form [formGroup]="formularioCliente">
 
-                <div class="formGroup">
-                    <label for="clienteId"><strong>Nombre del cliente</strong></label>
-                    <select name="clienteId" class="form-control" required="string" formControlName="clienteId"
-                        (change)="cambioCliente()">
-                        <option *ngFor="let cliente of listaC" [value]="cliente.id">{{cliente.nombre}}</option>
-                    </select>
+                        <div class="formGroup">
+                            <label for="clienteId"><strong>Nombre del cliente</strong></label>
+                            <select name="clienteId" class="form-control" required="string" formControlName="clienteId"
+                                (change)="cambioCliente()">
+                                <option *ngFor="let cliente of listaC" [value]="cliente.id">{{cliente.nombre}}</option>
+                            </select>
+                        </div>
+                        <div class="formGroup">
+                            <label for="email"><strong>Correo electronico</strong></label>
+                            <input type="email" class="form-control" id="email" formControlName="email">
+                        </div>
+                        <div class="formGroup">
+                            <label for="cifC"><strong>CIF</strong></label>
+                            <input type="text" class="form-control" id="cifC" formControlName="cifC">
+                        </div>
+                        <div class="formGroup">
+                            <label for="dir"><strong>Dirección</strong></label>
+                            <input type="text" class="form-control" id="dir" formControlName="dir">
+                        </div>
+                        <div class="formGroup">
+                            <label for="cpC"><strong>Código Postal</strong></label>
+                            <input type="text" class="form-control" id="cpC" formControlName="cpC">
+                        </div><br>
+                        <button type="button" class="btn btn-block" (click)="siguiente(2)">Guardar</button>
+                    </form>
                 </div>
-                <div class="formGroup">
-                    <label for="email"><strong>Correo electronico</strong></label>
-                    <input type="email" class="form-control" id="email" formControlName="email">
-                </div>
-                <div class="formGroup">
-                    <label for="cifC"><strong>CIF</strong></label>
-                    <input type="text" class="form-control" id="cifC" formControlName="cifC">
-                </div>
-                <div class="formGroup">
-                    <label for="dir"><strong>Dirección</strong></label>
-                    <input type="text" class="form-control" id="dir" formControlName="dir">
-                </div>
-                <div class="formGroup">
-                    <label for="cpC"><strong>Código Postal</strong></label>
-                    <input type="text" class="form-control" id="cpC" formControlName="cpC">
-                </div><br>
-                <button type="button" class="btn btn-block" (click)="siguiente(2)">Guardar</button>
-            </form>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </a>
         </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    </a>
 </div>

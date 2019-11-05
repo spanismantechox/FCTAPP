@@ -1,60 +1,67 @@
 <app-menu></app-menu>
-<div class="container" id="ingreso">
-    <h2>Ingresos</h2>
-    <app-error *ngIf="errorIngreso" [errorMessage]="errorMessage"></app-error>
-    <form [formGroup]="formularioIngreso" (ngSubmit)="agregarIngreso()">
-        <div class="form-group">
-            <label for="fecha">fecha</label>
-            <input type="date" class="form-control" id="fecha" formControlName="fecha" >
+<div class="row">
+    <div class="col-6">
+        <div class="container" id="ingreso">
+            <h2>Ingresos</h2>
+            <app-error *ngIf="errorIngreso" [errorMessage]="errorMessage"></app-error>
+            <form [formGroup]="formularioIngreso" (ngSubmit)="agregarIngreso()">
+                <div class="form-group">
+                    <label for="fecha">fecha</label>
+                    <input type="date" class="form-control" id="fecha" formControlName="fecha">
+                </div>
+                <div class="form-group">
+                    <label for="cantidad">Cantidad</label>
+                    <input type="number" class="form-control" id="cantidad" formControlName="cantidad">
+                </div>
+                <div class="form-group">
+                    <label for="restauranteId">Restaurante</label><br>
+                    <select name="restauranteId" class="form-control" required="string" formControlName="restauranteId">
+                        <option *ngFor="let restaurante of lista" [value]="restaurante.id">{{restaurante.nombre}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fuente">Fuente</label><br>
+                    <select name="fuente" class="form-control" required="string" formControlName="fuente">
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Tarjeta">Tarjeta</option>
+                        <option value="Uber">Uber Eats</option>
+                        <option value="JustEat">Just Eat</option>
+                        <option value="Tenedor">El tenedor</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Enviar</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="cantidad">Cantidad</label>
-            <input type="number" class="form-control" id="cantidad" formControlName="cantidad" >
+    </div>
+    <div class="col-6">
+        <div class="container" id="gasto">
+            <h2>Gastos</h2>
+            <app-error *ngIf="errorGasto" [errorMessage]="errorMessage"></app-error>
+            <form [formGroup]="formularioGasto" (ngSubmit)="agregarGasto()">
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" class="form-control" id="fecha" formControlName="fecha">
+                </div>
+                <div class="form-group">
+                    <label for="cantidad">Cantidad</label>
+                    <input type="number" class="form-control" id="cantidad" formControlName="cantidad">
+                </div>
+                <div class="form-group">
+                    <label for="idRestaurante">Restaurante</label>
+                    <select name="idRestaurante" class="form-control" required="String" formControlName="idRestaurante">
+                        <option *ngFor="let restaurante of lista" [value]="restaurante.id">{{restaurante.nombre}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="idProveedor">Proveedor</label>
+                    <select name="idProveedor" class="form-control" required="String" formControlName="idProveedor">
+                        <option *ngFor="let proveedor of listaP" [value]="proveedor.id">{{proveedor.nombre}}</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Enviar</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="restauranteId">Restaurante</label><br>
-            <select name="restauranteId"  class="form-control" required="string" formControlName="restauranteId" >
-                <option  *ngFor="let restaurante of lista" [value]="restaurante.id">{{restaurante.nombre}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="fuente">Fuente</label><br>
-            <select name="fuente" class="form-control"  required="string" formControlName="fuente">
-                <option value="Efectivo">Efectivo</option>
-                <option value="Tarjeta">Tarjeta</option>
-                <option value="Uber">Uber Eats</option>
-                <option value="JustEat">Just Eat</option>
-                <option value="Tenedor">El tenedor</option>
-            </select>
-        </div>
-        <button type="submit" class="btn">Enviar</button>
-    </form>
+    </div>
 </div>
-
-<div class="container" id="gasto">
-    <h2>Gastos</h2>    
-    <app-error *ngIf="errorGasto" [errorMessage]="errorMessage"></app-error>
-    <form [formGroup]="formularioGasto" (ngSubmit)="agregarGasto()">
-        <div class="form-group">
-            <label for="fecha">Fecha</label>
-            <input type="date" class="form-control" id="fecha" formControlName="fecha" >
-        </div>
-        <div class="form-group">
-            <label for="cantidad">Cantidad</label>
-            <input type="number" class="form-control" id="cantidad" formControlName="cantidad" >
-        </div>
-        <div class="form-group">
-            <label for="idRestaurante">Restaurante</label>
-            <select name="idRestaurante"  class="form-control" required="String" formControlName="idRestaurante" >
-                <option  *ngFor="let restaurante of lista" [value]="restaurante.id">{{restaurante.nombre}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="idProveedor">Proveedor</label>
-            <select name="idProveedor" class="form-control" required="String" formControlName="idProveedor">
-                <option *ngFor="let proveedor of listaP" [value]="proveedor.id">{{proveedor.nombre}}</option>
-            </select>
-        </div>
-        <button type="submit" class="btn">Enviar</button>
-    </form>
-</div> 

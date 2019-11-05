@@ -1,6 +1,10 @@
 .rowCalendar {
     margin-top: 50px;
 }
+.rowCalendar h1{
+    margin-bottom: 25px;
+    margin-left: 50px;
+}
 .filaGrafica{
     padding: 30px;
 }
@@ -36,4 +40,7 @@ a{
 .mensaje{
     margin-top: -300px;
     margin-left: 290px;
+}
+h1{
+    margin-left: 300px;
 }

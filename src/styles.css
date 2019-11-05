@@ -5,7 +5,17 @@ body {
 }
 .container {
     padding: 3rem;
+    margin: 0 auto;
 }
 h1{
     margin: 0 auto;
+}
+button{
+    color:white;
+}
+
+.form-control:focus{
+    box-shadow: none !important;
+    outline:0 !important;
+    border-color: #ced4da !important;
 }

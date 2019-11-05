@@ -1,32 +1,34 @@
 <app-menu></app-menu>
-<div class="container">
-    <h2>Registro de restaurantes</h2>
-    <app-error *ngIf="errorRestaurante" [errorMessage]='errorMessage'></app-error>
-    <form [formGroup]="formularioRegistroRestaurante" (ngSubmit)="altaRestaurante()" >
-        <div class="formGroup">
-            <label for="nombre">Nombre del restaurante</label>
-            <input type="text" class="form-control" id="nombre" formControlName="nombre">
-        </div><br>
-        <div class="formGroup">
-            <label for="direccion">Dirección</label>
-            <input type="text" class="form-control" id="direccion" formControlName="direccion">
-        </div><br>
-        <div class="formGroup">
-            <label for="telefono">Telefóno</label>
-            <input type="text" class="form-control" id="telefono" formControlName="telefono">
-        </div><br>
-        <div class="formGroup">
-            <label for="cif">CIF</label>
-            <input type="text" class="form-control" id="cif" formControlName="cif">
-        </div><br>
-        <div class="formGroup">
-            <label for="cp">Código Postal</label>
-            <input type="text" class="form-control" id="cp" formControlName="cp">
-        </div><br>
-        <div class="formGroup">
-            <label for="nombreFiscal">Nombre Físcal </label>
-            <input type="text" class="form-control" id="nombreFiscal" formControlName="nombreFiscal">
-        </div><br>
-        <button type="submit" class="btn" >Registrar</button>
-    </form>
+<div class="container row">
+    <div class="col-12">
+        <h2>Registro de restaurantes</h2>
+        <app-error *ngIf="errorRestaurante" [errorMessage]='errorMessage'></app-error>
+        <form [formGroup]="formularioRegistroRestaurante" (ngSubmit)="altaRestaurante()">
+            <div class="formGroup">
+                <label for="nombre">Nombre del restaurante</label>
+                <input type="text" class="form-control" id="nombre" formControlName="nombre">
+            </div><br>
+            <div class="formGroup">
+                <label for="direccion">Dirección</label>
+                <input type="text" class="form-control" id="direccion" formControlName="direccion">
+            </div><br>
+            <div class="formGroup">
+                <label for="telefono">Telefóno</label>
+                <input type="text" class="form-control" id="telefono" formControlName="telefono">
+            </div><br>
+            <div class="formGroup">
+                <label for="cif">CIF</label>
+                <input type="text" class="form-control" id="cif" formControlName="cif">
+            </div><br>
+            <div class="formGroup">
+                <label for="cp">Código Postal</label>
+                <input type="text" class="form-control" id="cp" formControlName="cp">
+            </div><br>
+            <div class="formGroup">
+                <label for="nombreFiscal">Nombre Físcal </label>
+                <input type="text" class="form-control" id="nombreFiscal" formControlName="nombreFiscal">
+            </div><br>
+            <button type="submit" class="btn">Registrar</button>
+        </form>
+    </div>
 </div>

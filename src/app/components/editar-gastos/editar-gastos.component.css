@@ -1,5 +1,6 @@
 button{
-    background-color: rgb(54, 161, 161);  
+    background-color: rgb(54, 161, 161); 
+    color:white; 
 }
 div.card{    
     margin: 10px 10px;
