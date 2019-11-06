@@ -1,21 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+
 body {
-    background:white;
+    background: white;
     font-family: 'Dosis', sans-serif;
 }
+
 .container {
     padding: 3rem;
     margin: 0 auto;
 }
-h1{
+
+h1 {
     margin: 0 auto;
 }
-button{
-    color:white;
+
+button {
+    color: white;
 }
 
-.form-control:focus{
-    box-shadow: none !important;
-    outline:0 !important;
-    border-color: #ced4da !important;
+.form-control:focus {
+    box-shadow: rgb(54, 161, 161) !important;
+    outline: 0 !important;
+    border-color: rgb(54, 161, 161) !important;
 }
