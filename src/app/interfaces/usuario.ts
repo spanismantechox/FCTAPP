@@ -12,4 +12,5 @@ export interface UsuarioC{
 export interface UsuarioL{
     nombre:string;
     rol:string;
+    contrasena:string;
 }

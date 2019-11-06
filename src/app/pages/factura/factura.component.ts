@@ -35,9 +35,7 @@ export class FacturaComponent implements OnInit {
 
   ngOnInit() {
     $('.carousel').carousel('pause')
-
     $('.carousel').on('slide.bs.carousel', (e) => {
-
       if(!this.clickNextButton){
         this.siguiente(e.from, e.direction);
       }
@@ -141,9 +139,9 @@ export class FacturaComponent implements OnInit {
   
         this.facturaService.crearFactura(factura).subscribe((data:any)=>{
           if(data.message==='Factura creada correctamente!'){
-            swal("Exito!",data.message,"success");
+            swal("Exito!","Factura creada correctamente!","success");
           }else{
-            swal("Fallo!",data.message,"success");
+            swal("Fallo!","Datos incorrectos","success");
           }
         });
 

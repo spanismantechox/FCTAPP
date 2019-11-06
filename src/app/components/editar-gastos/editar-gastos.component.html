@@ -5,7 +5,7 @@
             <input type="text" class="form-control" id="fecha" formControlName="fecha">
         </div><br>
         <div class="formGroup">
-            
+
             <label for="nombre_restaurante"><strong>Nombre del restaurante</strong></label>
             <select name="nombre_restaurante" class="form-control" formControlName="nombre_restaurante" [(ngModel)]="selectRestaurante">
                     <option *ngFor="let restaurante of restaurantes" [value]="restaurante.id">{{restaurante.nombre}}</option>
@@ -13,7 +13,7 @@
         </div><br>
         <div class="formGroup">
             <label for="nombre_proveedor"><strong>Nombre del proveedor</strong></label>
-            <select name="nombre_proveedor"class="form-control" formControlName="nombre_proveedor"  [(ngModel)]="selectProveedor">
+            <select name="nombre_proveedor" class="form-control" formControlName="nombre_proveedor" [(ngModel)]="selectProveedor">
                 <option *ngFor=" let proveedor of proveedores" [value]="proveedor.id" >{{proveedor.nombre}}</option>
             </select>
         </div><br>
@@ -23,6 +23,6 @@
         </div><br>
         <button *ngIf="!editando" type="button" class="btn btn-block" (click)="habilitar()">Editar</button>
         <button *ngIf="editando" type="submit" class="btn btn-block">Guardar</button>
-        <button *ngIf="!editando" type="button" class="btn btn-block" (click)="borrar()" >Borrar</button>
+        <button *ngIf="!editando" type="button" class="btn btn-block" (click)="borrar()">Borrar</button>
     </form>
 </div>

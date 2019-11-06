@@ -38,7 +38,6 @@ export class EditarClienteComponent implements OnInit {
 
   guardarCli(){
     this.editando= false;
-    debugger;
     if(!this.formularioListaCliente.controls.email.valid) {
       swal("Fallo!","error email mal","success")
     } else {
