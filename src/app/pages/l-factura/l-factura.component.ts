@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FacturaService } from 'src/app/services/factura.service';
 import { FacturaL, Factura } from 'src/app/interfaces/factura';
-
+import swal from 'sweetalert';
 @Component({
   selector: 'app-l-factura',
   templateUrl: './l-factura.component.html',
@@ -25,9 +25,9 @@ export class LFacturaComponent implements OnInit {
     
     this.facturaService.exportarFactura(id).subscribe((data:any)=>{
       if(data.message==='factura creada con exito!'){
-        alert(data.message);
+        swal("Exito!",data.message,"success");
       }else{
-        alert(data.message);
+        swal("Fallo!", data.message ,"success");
       }
     });
   }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RUsuariosService } from 'src/app/services/r-usuarios.service';
 import { UsuarioC } from 'src/app/interfaces/usuario';
-
+import swal from 'sweetalert';
 @Component({
   selector: 'app-r-usuario',
   templateUrl: './r-usuario.component.html',
@@ -33,7 +33,7 @@ export class RUsuarioComponent implements OnInit {
         }
         this.usuarioService.crearUsuarios(usuario).subscribe((data:any)=>{
           if(data.message==='Usuario dado de alta correctamente!'){
-            alert('Usuario dado de alta correctamente!');
+            swal('Exito!','Usuario dado de alta correctamente!','success');
           }else{
             this.errorUsuario=true;
             this.errorMessage=data.message;

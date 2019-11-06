@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { ClienteL } from 'src/app/interfaces/clientes';
-
+import swal from 'sweetalert';
 @Component({
   selector: 'app-editar-cliente',
   templateUrl: './editar-cliente.component.html',
@@ -40,7 +40,7 @@ export class EditarClienteComponent implements OnInit {
     this.editando= false;
     debugger;
     if(!this.formularioListaCliente.controls.email.valid) {
-      alert("error email mal")
+      swal("Fallo!","error email mal","success")
     } else {
       this.cliente.nombre = this.formularioListaCliente.controls.nombre.value;
       this.cliente.email= this.formularioListaCliente.controls.email.value;

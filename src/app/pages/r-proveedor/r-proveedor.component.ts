@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ProveedorC } from 'src/app/interfaces/proveedor';
 import { ProveedorService } from 'src/app/services/proveedor.service';
-
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-r-proveedor',
@@ -32,7 +32,7 @@ export class RProveedorComponent implements OnInit {
       }
       this.proovedorService.registrarProveedor(proveedor).subscribe((data:any)=>{
         if(data.message==='Proveedor dado de alta correctamente!'){
-          alert('Proveedor creado correctamente');
+          swal("Exito!",'Proveedor creado correctamente',"success");
         }else{
           this.errorProveedor=true;
           this.errorMessage=data.message;

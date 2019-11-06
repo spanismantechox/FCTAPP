@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RestauranteService } from 'src/app/services/restaurante.service';
 import { RestauranteC } from 'src/app/interfaces/restaurante';
-
+import swal from 'sweetalert';
 @Component({
   selector: 'app-r-restaurante',
   templateUrl: './r-restaurante.component.html',
@@ -41,7 +41,7 @@ export class RRestauranteComponent implements OnInit {
         }
         this.restaruanteService.crearRestaurante(restaurante).subscribe((data:any)=>{
           if(data.message==='Restaurante dado de alta correctamente!'){
-            alert("Restaurante creado correctamente!");
+            swal("Exito!","Restaurante creado correctamente!","success");
             
           }else{
             this.errorRestaurante=true;

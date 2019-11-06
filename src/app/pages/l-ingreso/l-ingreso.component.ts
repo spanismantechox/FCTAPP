@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IngresoL } from 'src/app/interfaces/ingresos';
 import { IngresoService } from 'src/app/services/ingreso.service';
-
+import swal from 'sweetalert';
 @Component({
   selector: 'app-l-ingreso',
   templateUrl: './l-ingreso.component.html',
@@ -26,7 +26,7 @@ export class LIngresoComponent implements OnInit {
     
     this.ingresoService.modificarIngresos(e).subscribe((data:any)=>{
       if(data.message==='Ingreso modificado correctamente!'){
-        alert(data.message);
+        swal("Exito!",data.message,"success");
       }else{
         this.errorIngreso=true;
         this.errorMessage=data.message;

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/interfaces/clientes';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClienteService } from 'src/app/services/cliente.service';
-
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-r-cliente',
@@ -40,7 +40,7 @@ export class RClienteComponent implements OnInit {
       }
       this.clienteService.altalCliente(cliente).subscribe((data: any) => {
         if (data.message === 'Cliente dado de alta correctamente!') {
-          alert("Cliente creado con exito");
+          swal("Exito !","Cliente creado con exito","success");
         }else{
           this.errorCliente=true;
           this.errorMessage=data.message;

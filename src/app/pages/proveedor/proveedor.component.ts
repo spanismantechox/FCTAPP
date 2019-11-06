@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Proveedor } from 'src/app/interfaces/proveedor';
 import { ProveedorService } from 'src/app/services/proveedor.service';
-
+import swal from 'sweetalert';
 @Component({
   selector: 'app-proveedor',
   templateUrl: './proveedor.component.html',
@@ -24,7 +24,7 @@ export class ProveedorComponent implements OnInit {
   modificar(e) {
     this.proveedorService.editarProveedor(e).subscribe((data: any) => {
       if (data.message === 'Proveedor modificado correctamente!') {
-        alert("Proveedor modificado correctamente");
+        swal("Exito !" ," Proveedor modificado correctamente","success");
       } else {
         this.errorModificar = true;
         this.erroMessage = data.message;

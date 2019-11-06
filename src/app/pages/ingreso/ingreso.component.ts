@@ -8,7 +8,7 @@ import { RestauranteService } from 'src/app/services/restaurante.service';
 import { Proveedor } from 'src/app/interfaces/proveedor';
 import { ProveedorService } from 'src/app/services/proveedor.service';
 import { Gastos } from 'src/app/interfaces/gastos';
-
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-ingreso',
@@ -68,7 +68,7 @@ export class IngresoComponent implements OnInit {
       }
       this.ingresoService.ingresos(ingreso).subscribe((data: any) => {
         if (data.message === 'ok') {
-          alert("Ingreso añadido!");
+          swal("Exito! ","Ingreso añadido!","success");
         }else{
           this.errorIngreso=true;
           this.errorMessage=data.message;
@@ -94,7 +94,7 @@ export class IngresoComponent implements OnInit {
       }
       this.gastoService.gastos(gasto).subscribe((data: any) => {
         if (data.message === 'ok') {
-          alert("Gasto añadido!");
+          swal("Exito!","Gasto añadido!","success");
         }else{
           this.errorGasto=true;
           this.errorMessage=data.message;

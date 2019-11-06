@@ -6,6 +6,7 @@ import { ClienteService } from 'src/app/services/cliente.service';
 import { FormGroup, FormControl, Validators, FormsModule } from '@angular/forms';
 import { FacturaService } from 'src/app/services/factura.service';
 import { Factura } from 'src/app/interfaces/factura';
+import swal from 'sweetalert';
 declare var $ : any;
 @Component({
   selector: 'app-factura',
@@ -140,9 +141,9 @@ export class FacturaComponent implements OnInit {
   
         this.facturaService.crearFactura(factura).subscribe((data:any)=>{
           if(data.message==='Factura creada correctamente!'){
-            alert(data.message);
+            swal("Exito!",data.message,"success");
           }else{
-            alert(data.message);
+            swal("Fallo!",data.message,"success");
           }
         });
 

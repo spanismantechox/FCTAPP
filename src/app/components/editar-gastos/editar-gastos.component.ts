@@ -5,7 +5,7 @@ import { Restaurante } from 'src/app/interfaces/restaurante';
 import { Proveedor } from 'src/app/interfaces/proveedor';
 import { GastoService } from 'src/app/services/gasto.service';
 import { DatePipe } from '@angular/common';
-
+import swal from 'sweetalert';
 
 
 @Component({
@@ -91,7 +91,7 @@ export class EditarGastosComponent implements OnInit, OnChanges {
     
     let idGasto=this.gasto.idGasto;
     this.gastoService.delGastos(idGasto).subscribe((data:any)=> {
-      alert(data.message);
+      swal("Exito!",data.message,"success");
       this.gastoBorrado.emit(true);
     }); 
 

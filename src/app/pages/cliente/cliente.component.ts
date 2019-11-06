@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteL } from 'src/app/interfaces/clientes';
 import { ClienteService } from 'src/app/services/cliente.service';
-
+import swal from 'sweetalert';
 @Component({
   selector: 'app-cliente',
   templateUrl: './cliente.component.html',
@@ -25,7 +25,7 @@ export class ClienteComponent implements OnInit {
   modificar(e) {
     this.clienteService.modificarCliente(e).subscribe((data: any) => {
       if (data.message === 'Cliente modificado correctamente!') {
-        alert("Cliente modificado correctamente!");
+        swal("Exito!","Cliente modificado correctamente!","success");
       } else {
         this.errorModificar = true;
         this.errorMessage = data.message;

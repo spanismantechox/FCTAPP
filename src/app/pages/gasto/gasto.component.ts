@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GastosL, GastoM } from 'src/app/interfaces/gastos';
 import { GastoService } from 'src/app/services/gasto.service';
-
+import swal from 'sweetalert';
 @Component({
   selector: 'app-gasto',
   templateUrl: './gasto.component.html',
@@ -25,7 +25,7 @@ export class GastoComponent implements OnInit {
 
     this.gastoService.modificarGastos(e).subscribe((data: any) => {
       if (data.message === 'Gasto modificado correctamente!') {
-        alert("Gasto modificado correctamente!");
+        swal("Exito!","Gasto modificado correctamente!","success");
       } else {
         this.errorGasto = true;
         this.errorMessage = data.message;

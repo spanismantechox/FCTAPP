@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, Injectable, LOCALE_ID, Inject, SimpleChanges, OnChanges } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Restaurante } from 'src/app/interfaces/restaurante';
-
+import swal from 'sweetalert';
 import { Ingreso } from 'src/app/interfaces/ingresos';
 import { RestauranteComponent } from 'src/app/pages/restaurante/restaurante.component';
 import { IngresoService } from 'src/app/services/ingreso.service';
@@ -96,7 +96,7 @@ export class EditarIngresosComponent implements OnInit, OnChanges {
     let idIngreso=this.ingreso.idIngreso;
 
     this.ingresoService.eleiminarIngreso(idIngreso).subscribe((data:any)=>{
-      alert(data.message);
+      swal("Exito!",data.message,"success");
       this.ingresoBorrado.emit(true);
     })
   }

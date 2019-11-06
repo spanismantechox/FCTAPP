@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RestauranteC } from 'src/app/interfaces/restaurante';
 import { RestauranteService } from 'src/app/services/restaurante.service';
 import { FormGroup } from '@angular/forms';
+import swal from 'sweetalert';
+
 
 @Component({
   selector: 'app-restaurante',
@@ -26,7 +28,7 @@ export class RestauranteComponent implements OnInit {
   modificar(e){
     this.restauranteService.modificarRestaurante(e).subscribe((data:any)=>{
       if(data.message==='Restaurante modificado correctamente!'){
-        alert("Restaurante modificado correctamente!");
+        swal("Exito!","Restaurante modificado correctamente!", "success");
       }else{
         this.errorModificar=true;
         this.errorMessage=data.message;

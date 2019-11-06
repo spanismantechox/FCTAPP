@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioL } from 'src/app/interfaces/usuario';
 import { RUsuariosService } from 'src/app/services/r-usuarios.service';
-
+import swal from 'sweetalert';
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
@@ -25,7 +25,7 @@ export class UsuarioComponent implements OnInit {
   modificar(e){
     this.usuarioService.modificarUsuarios(e).subscribe((data:any)=> {
       if(data.message==='Usuario modificado correctamente!'){
-        alert("Usuario modificado correctamente!");
+        swal("Usuario modificado correctamente", "aceptar");
       }else{
         this.errorUsuario=true;
         this.errorMessage=data.message;

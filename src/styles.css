@@ -23,3 +23,17 @@ button {
     outline: 0 !important;
     border-color: rgb(54, 161, 161) !important;
 }
+
+.swal-button {
+    padding: 7px 19px;
+    border-radius: 5px;
+    background-color: rgb(54, 161, 161);
+    font-size: 20px;
+    border: 1px solid rgb(54, 161, 161);
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+    text: "aceptar";
+}
+
+.swal-overlay {
+    background-color: rgba(54, 161, 161, 0.2);
+}
