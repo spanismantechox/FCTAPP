@@ -38,4 +38,13 @@ export class IngresoService {
     params = params.append('numero', numero);
     return this.http.get(`${environment.urlServicios}ingreso/fuentes-ingreso/`,{params: params});
   }
+
+  public fuentesIngresoNombre(periodo:any,numero:any,id:any){
+
+    let params = new HttpParams();
+    params =params.append('periodo',periodo);
+    params =params.append('numero',numero);
+    params =params.append('id',id);
+    return this.http.get(`${environment.urlServicios}ingreso/fuentes-ingreso-id/`,{params: params});
+  }
 }

@@ -5,6 +5,11 @@ import { IngresoService } from 'src/app/services/ingreso.service';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import frozen from "@amcharts/amcharts4/themes/frozen";
+import { Restaurante } from 'src/app/interfaces/restaurante';
+import { RestauranteService } from 'src/app/services/restaurante.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { debug } from 'util';
+import { FacturaService } from 'src/app/services/factura.service';
 
 @Component({
   selector: 'app-calendario',
@@ -19,14 +24,19 @@ export class CalendarioComponent implements OnInit {
   public periodo = "total";
   public chart;
   public month = (new Date().getMonth() + 1);
-  
+  public listaRes: Restaurante[] = [];
   public year = (new Date()).getFullYear();
   public isCeroTodo = false;
+  public formularioRestaurante: FormGroup;
+  private restauranteId: number;
+  public numFac: number;
   @ViewChild("calendar", { static: true }) public calendar: IgxCalendarComponent;
   @ViewChild("alert", { static: true }) public dialog: IgxDialogComponent;
 
   constructor(
     private ingresoService: IngresoService,
+    private restauranteService: RestauranteService,
+    private facturaService: FacturaService,
   ) { }
 
   private async initializeChart() {
@@ -46,6 +56,13 @@ export class CalendarioComponent implements OnInit {
   }
   ngOnInit() {
 
+    this.formularioRestaurante = new FormGroup({
+      nombreRestaurante: new FormControl('', Validators.required),
+
+    });
+    this.restauranteService.listaRestuarantes().then((data: any) => {
+      this.listaRes = data;
+    });
     setTimeout(() => {
       this.setSelectedDays();
       this.initializeChart();
@@ -75,6 +92,7 @@ export class CalendarioComponent implements OnInit {
 
 
             if (diaCal == 1) {
+              debugger;
               dia.classList.add("k-state-selected")
             }
           }
@@ -85,12 +103,12 @@ export class CalendarioComponent implements OnInit {
   }
   numeroMas(tab) {
     //MENSUAL
-    
+
     console.log(this.month);
     if (tab == 2) {
       this.periodo = "mensual";
       this.month = this.month + 1;
-      
+
       if (this.month > 12) {
         this.month = 1;
       }
@@ -152,7 +170,7 @@ export class CalendarioComponent implements OnInit {
   }
 
   async graficaTotal(periodo) {
-    this.isCeroTodo=false;
+    this.isCeroTodo = false;
     if (this.chart === null) {
       await this.initializeChart();
     }
@@ -176,10 +194,10 @@ export class CalendarioComponent implements OnInit {
           color = "#95B1B0";
         }
 
-        if(data[s] > 0 )
-        this.data.push({
-          fuente: s, valor: data[s], color: color
-        })
+        if (data[s] > 0)
+          this.data.push({
+            fuente: s, valor: data[s], color: color
+          })
       }
       this.chart.data = this.data;
     })
@@ -191,7 +209,7 @@ export class CalendarioComponent implements OnInit {
     }
     this.ingresoService.fuentesIngreso(periodo, month).subscribe((data: any) => {
       this.data = [];
-      this.isCeroTodo=true;
+      this.isCeroTodo = true;
       let arr = Object.keys(data);
       for (let s of arr) {
         let color = '';
@@ -209,7 +227,7 @@ export class CalendarioComponent implements OnInit {
         else if (s === 'Tenedor') {
           color = "#95B1B0";
         }
-        if(data[s]>0)
+        if (data[s] > 0)
           this.data.push({
             fuente: s, valor: data[s], color: color
           })
@@ -223,17 +241,17 @@ export class CalendarioComponent implements OnInit {
       if (this.isCeroTodo) {
         this.chart = null;
         document.getElementById("chartdiv").innerHTML = "";
-       // document.getElementById("chartdiv").style.height ="0px";
-      } 
+        // document.getElementById("chartdiv").style.height ="0px";
+      }
     })
 
   }
-  graficaAnual(periodo, year) {
+  async graficaAnual(periodo, year) {
     if (this.chart === null) {
       this.initializeChart();
     }
     this.ingresoService.fuentesIngreso(periodo, year).subscribe((data: any) => {
-      this.isCeroTodo=true;
+      this.isCeroTodo = true;
       this.data = [];
       let arr = Object.keys(data);
       for (let s of arr) {
@@ -253,7 +271,7 @@ export class CalendarioComponent implements OnInit {
           color = "#95B1B0";
         }
 
-        if(data[s]>0)
+        if (data[s] > 0)
           this.data.push({
             fuente: s, valor: data[s], color: color
           })
@@ -265,10 +283,106 @@ export class CalendarioComponent implements OnInit {
       if (this.isCeroTodo) {
         this.chart = null;
         document.getElementById("chartdiv").innerHTML = "";
-      //  document.getElementById("chartdiv").style.height ="0px";
-      } 
+      }
     })
-
-
   }
+  cambiarGrafica() {
+
+    if (this.tab == 2) {
+      this.periodo = "mensual"
+      this.graficaMensualNombre(this.periodo, this.month, this.restauranteId);
+
+    } else if (this.tab == 3) {
+      this.periodo = "anual"
+      this.graficaAnualNombre(this.periodo, this.year, this.restauranteId);
+    }
+  }
+
+  async graficaMensualNombre(periodo, month, id) {
+
+    if (this.chart === null) {
+      this.initializeChart();
+    }
+    this.ingresoService.fuentesIngresoNombre(periodo, month, id).subscribe((data: any) => {
+      this.isCeroTodo = true;
+      this.data = [];
+      let arr = Object.keys(data);
+      for (let s of arr) {
+        let color = '';
+        if (s === 'JustEat') {
+          color = "#46cccc";
+        }
+        else if (s === 'Tarjeta') {
+          color = "#7286cc";
+        } else if (s === 'Uber') {
+          color = "#4c9999";
+        }
+        else if (s === 'Efectivo') {
+          color = "#abbaff";
+        }
+        else if (s === 'Tenedor') {
+          color = "#95B1B0";
+        }
+
+        if (data[s] > 0)
+          this.data.push({
+            fuente: s, valor: data[s], color: color
+          })
+        if (data[s] > 0) {
+          this.isCeroTodo = false;
+        }
+      }
+      this.chart.data = this.data;
+      if (this.isCeroTodo) {
+        this.chart = null;
+        document.getElementById("chartdiv").innerHTML = "";
+
+      }
+    })
+  }
+  graficaAnualNombre(periodo, year, id) {
+    if (this.chart === null) {
+      this.initializeChart();
+    }
+    this.ingresoService.fuentesIngresoNombre(periodo, year, id).subscribe((data: any) => {
+      this.isCeroTodo = true;
+      this.data = [];
+      let arr = Object.keys(data);
+      for (let s of arr) {
+        let color = '';
+        if (s === 'JustEat') {
+          color = "#46cccc";
+        }
+        else if (s === 'Tarjeta') {
+          color = "#7286cc";
+        } else if (s === 'Uber') {
+          color = "#4c9999";
+        }
+        else if (s === 'Efectivo') {
+          color = "#abbaff";
+        }
+        else if (s === 'Tenedor') {
+          color = "#95B1B0";
+        }
+
+        if (data[s] > 0)
+          this.data.push({
+            fuente: s, valor: data[s], color: color
+          })
+        if (data[s] > 0) {
+          this.isCeroTodo = false;
+        }
+      }
+      this.chart.data = this.data;
+      if (this.isCeroTodo) {
+        this.chart = null;
+        document.getElementById("chartdiv").innerHTML = "";
+      }
+    })
+  }
+
+  changeRes() {
+    this.restauranteId = this.formularioRestaurante.controls.nombreRestaurante.value;
+  }
+
 }

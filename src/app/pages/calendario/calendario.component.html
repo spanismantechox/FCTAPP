@@ -1,6 +1,6 @@
 <div class="container row">
     <div class="col-12">
-        <div >
+        <div>
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a id="tab1" class="nav-link active" href="#" (click)="cambiaTab(1)">Total</a>
@@ -17,9 +17,26 @@
 
     <div class="col-12 filaGrafica">
         <div class="grafica  ">
-            <h1>{{ title }} <p *ngIf="tab==3">en el año: {{year}}</p>
+            <h1>{{ title }}
+                <p *ngIf="tab==3">en el año: {{year}}</p>
                 <p *ngIf="tab==2">en el mes: {{ month+'/10/2019' | date:'MMMM'}}</p>
             </h1>
+            <div *ngIf="tab!=1">
+                <p> <strong> Elige el restaurante </strong></p>
+                <form [formGroup]="formularioRestaurante">
+                    <div class="form-group">
+                        <label for="nombreRestaurante">Nombre del restaurante</label>
+                        <select name="nombreRestaurante" formControlName="nombreRestaurante" (change)="changeRes()">
+                            <option *ngFor="let restaurante of listaRes" class="form-control"
+                                [value]="restaurante.id">
+                                {{restaurante.nombre}}
+                            </option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn" (click)="cambiarGrafica()">Cambiar</button>
+                </form>
+            </div>
+
             <button *ngIf="tab!=1" class="btn atras" (click)="numeroMenos(tab)">&lt;</button>
             <button *ngIf="tab!=1" class="btn adelante" (click)="numeroMas(tab)">&gt;</button>
 
