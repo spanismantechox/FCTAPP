@@ -4,40 +4,12 @@ button {
     margin-bottom: 10px;
 }
 
-.rowCalendar {
-    margin-top: 50px;
-}
-
-.rowCalendar h1 {
-    margin-bottom: 25px;
-    margin-left: 50px;
-}
-
-.filaGrafica {
-    padding: 30px;
-}
-
-.grafica {
-    margin-top: 20px;
-}
-
-.calendar {
-    margin: 50px auto;
-    text-align: center;
-}
-
-#chartdiv {
-    height: 300px;
-    text-align: center;
-}
-
-.atras {
-    margin-left: 200px;
-    margin-right: 600px;
-}
-
 a {
     color: black;
+}
+
+a:hover {
+    color: rgb(54, 161, 161);
 }
 
 .nav-tabs .nav-item.show .nav-link,
@@ -46,119 +18,33 @@ a {
     background-color: rgb(54, 161, 161);
 }
 
-.mensaje {
-    margin-top: -300px;
-    margin-left: 290px;
+.grafica {
+    margin-top: 50px;
+    margin-left: -100px;
 }
 
-h1 {
-    margin-left: 300px;
+#chartdiv {
+    margin-top: 50px;
+    height: 350px;
 }
 
-@media only screen and (max-width:1224px) {
-    .mensaje {
-        margin-top: -300px;
-        margin-left: 290px;
-    }
-    h1 {
-        margin-left: 300px;
-    }
+.atras {
+    margin-left: 200px;
 }
 
-@media only screen and (max-width:1197px) {
-    .mensaje {
-        margin-top: -300px;
-        margin-left: 290px;
-    }
-    h1 {
-        margin-left: 300px;
-    }
-    .atras {
-        margin-left: 200px;
-        margin-right: 500px;
-    }
+.adelante {
+    margin-left: 400px;
 }
 
-@media only screen and (max-width:991px) {
-    .mensaje {
-        margin-top: -300px;
-        margin-left: 290px;
-    }
-    h1 {
-        margin-left: 100px;
-    }
-    .atras {
-        margin-left: 50px;
-        margin-right: 400px;
-    }
+#cambiar {
+    margin-left: 700px;
 }
 
-@media only screen and (max-width:768px) {
-    .mensaje {
-        margin-top: -300px;
-        margin-left: 290px;
-    }
-    h1 {
-        margin-left: 20px;
-    }
-    .atras {
-        margin-left: 10px;
-        margin-right: 300px;
-    }
+.calendario {
+    width: 850px;
+    margin-left: 50px;
 }
 
-@media only screen and (max-width:548px) {
-    .mensaje {
-        margin-top: -300px;
-        margin-left: 290px;
-    }
-    h1 {
-        margin-left: 0px;
-    }
-    .atras {
-        margin-left: 0px;
-        margin-right: 300px;
-    }
-}
-
-@media only screen and (max-width:536px) {
-    .mensaje {
-        margin-top: -300px;
-        margin-left: 290px;
-    }
-    h1 {
-        margin-left: 0px;
-    }
-    .atras {
-        margin-left: 0px;
-        margin-right: 230px;
-    }
-}
-
-@media only screen and (max-width:479px) {
-    .mensaje {
-        margin-top: -300px;
-        margin-left: 290px;
-    }
-    h1 {
-        margin-left: 0px;
-    }
-    .atras {
-        margin-left: 0px;
-        margin-right: 230px;
-    }
-}
-
-@media only screen and (max-width:467px) {
-    .mensaje {
-        margin-top: -300px;
-        margin-left: 290px;
-    }
-    h1 {
-        margin-left: 0px;
-    }
-    .atras {
-        margin-left: 0px;
-        margin-right: 180px;
-    }
+.calendario h1 {
+    font-size: 22px;
 }

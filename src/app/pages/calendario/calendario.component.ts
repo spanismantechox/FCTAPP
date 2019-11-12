@@ -21,6 +21,7 @@ import { FacturaL } from 'src/app/interfaces/factura';
 export class CalendarioComponent implements OnInit {
   public value:Date;
   public mostrar=false;
+  public mostrarMessage=false;
   public data: any[] = [];
   public title: string = "Total de ventas por fuente";
   public tab = 1;
@@ -401,6 +402,10 @@ export class CalendarioComponent implements OnInit {
     this.mostrar=true;  
     this.facturaService.listaFacturaMes(this.mes).subscribe((data:any)=>{
       this.listaFac= data.factura;
+      if(this.listaFac.length==0){
+        this.mostrarMessage=true;
+        this.mostrar=false;
+      }
       debugger
     });
   }

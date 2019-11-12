@@ -1,21 +1,19 @@
 <div class="container row">
-    <div class="col-12">
-        <div>
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a id="tab1" class="nav-link active" href="#" (click)="cambiaTab(1)">Total</a>
-                </li>
-                <li class="nav-item">
-                    <a id="tab3" class="nav-link" href="#" (click)="cambiaTab(3)">Anual</a>
-                </li>
-                <li class="nav-item">
-                    <a id="tab2" class="nav-link" href="#" (click)="cambiaTab(2)">Mensual</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <div class="col-9 grafica">
 
-    <div class="col-12 filaGrafica">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a id="tab1" class="nav-link active" href="#" (click)="cambiaTab(1)">Total</a>
+            </li>
+            <li class="nav-item">
+                <a id="tab3" class="nav-link" href="#" (click)="cambiaTab(3)">Anual</a>
+            </li>
+            <li class="nav-item">
+                <a id="tab2" class="nav-link" href="#" (click)="cambiaTab(2)">Mensual</a>
+            </li>
+        </ul>
+
+
         <div class="grafica  ">
             <h1>{{ title }}
                 <p *ngIf="tab==3">en el año: {{year}}</p>
@@ -33,7 +31,7 @@
                             </option>
                         </select>
                     </div>
-                    <button type="button" class="btn" (click)="cambiarGrafica()">Cambiar</button>
+                    <button type="button" class="btn" id="cambiar" (click)="cambiarGrafica()">Cambiar</button>
                 </form>
             </div>
 
@@ -46,22 +44,26 @@
                 <h1>Lo sentimos no tiene datos</h1>
             </div>
         </div>
+
     </div>
-    <div class=" col-12 rowCalendar">
+    <div class=" col-3 calendario">
 
         <div class="calendar">
             <h1>Facturas creadas por mes</h1>
-            <button type="button" class="btn bm-4 " (click)="FacturaMes()">Ver facturas del mes</button>
+            <button type="button" class="btn " (click)="FacturaMes()">Ver facturas del mes</button>
             <br>
             <p-calendar [(ngModel)]="value" [inline]="true" (onMonthChange)="onMonthChange($event)" [monthNavigator]="true" dateFormat="mm/yy"><span>&gt</span><span>&lt</span></p-calendar>
-
         </div>
     </div>
-    <div class="col-12 ">
+</div>
+<div class="container row">
 
+    <div class="col-12">
+        <hr>
+        <h1 *ngIf="mostarMesaage">No hay facturas en el mes: {{ mes+'/10/2019' | date:'MMMM'}}</h1>
         <div *ngIf="mostrar">
-            <h1 *ngIf="mostrar">Listado de facturas del mes {{mes+'/10/2019' | date:'MMMM'}}</h1>
             <div *ngFor="let factura of listaFac" class="card bg-light" style="width: 18rem;">
+                <h1 *ngIf="mostar">Facturas creadas en el mes: {{ mes+'/10/2019' | date:'MMMM'}}</h1>
                 <h5 class="card-header"><strong>Número de la factura: {{ factura.numeroFactura }}</strong></h5>
                 <div class="card-body">
                     <h6 class="card-subtitle mb-2 text-muted"><strong>Fecha: </strong>{{factura.fecha |date: 'dd-MM-yyyy'}}</h6>
