@@ -392,7 +392,9 @@ export class CalendarioComponent implements OnInit {
     this.restauranteId = this.formularioRestaurante.controls.nombreRestaurante.value;
   }
   public onMonthChange(e) {
+    this.mostrar=false;
     return  this.mes=e.month;    
+ 
   }
 
   FacturaMes(){     

@@ -51,12 +51,16 @@
 
         <div class="calendar">
             <h1>Facturas creadas por mes</h1>
+            <button type="button" class="btn bm-4 " (click)="FacturaMes()">Ver facturas del mes</button>
+            <br>
             <p-calendar [(ngModel)]="value" [inline]="true" (onMonthChange)="onMonthChange($event)" [monthNavigator]="true" dateFormat="mm/yy"><span>&gt</span><span>&lt</span></p-calendar>
-            <button type="button" class="btn " (click)="FacturaMes()">Ver facturas del mes</button>
+
         </div>
     </div>
     <div class="col-12 ">
+
         <div *ngIf="mostrar">
+            <h1 *ngIf="mostrar">Listado de facturas del mes {{mes+'/10/2019' | date:'MMMM'}}</h1>
             <div *ngFor="let factura of listaFac" class="card bg-light" style="width: 18rem;">
                 <h5 class="card-header"><strong>Número de la factura: {{ factura.numeroFactura }}</strong></h5>
                 <div class="card-body">
