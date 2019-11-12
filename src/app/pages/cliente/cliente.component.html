@@ -1,4 +1,7 @@
 <app-menu (buscarEvent)="buscar($event)" [mostrarBuscador]="true"></app-menu>
+<button class="btn mr-sm-2" type="button" id="info" (click)="info()"><img src="assets/img/question.png" alt="info"></button>
+<app-ok-message *ngIf="informacion" [message]="message"></app-ok-message>
 <h1>Listado de los clientes</h1>
 <app-error *ngIf="errorCliente" [errorMessage]="errorMessage"></app-error>
-<app-editar-cliente (guardar)="modificar($event)" *ngFor="let  cliente of listaCliente" [cliente]="cliente" ></app-editar-cliente>     
+<app-editar-cliente (guardar)="modificar($event)" *ngFor="let  cliente of listaCliente" [cliente]="cliente"></app-editar-cliente>
+<app-footer></app-footer>

@@ -7,3 +7,15 @@ button {
     background-color: rgb(54, 161, 161);
     color: white;
 }
+
+button#info {
+    margin-left: 95%;
+    width: 25;
+    height: 25px;
+}
+
+button#info img {
+    margin-top: -20px;
+    width: 15px;
+    height: 15px;
+}

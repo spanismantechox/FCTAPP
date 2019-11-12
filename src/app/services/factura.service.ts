@@ -53,7 +53,8 @@ export class FacturaService {
     });
   }
 
-  listaFacturaMesAnho(fecha:Date){
-    return this.http.get(`${environment.urlServicios}factura/facturas/${fecha}`);
+  listaFacturaMes(mes:number){
+    
+    return this.http.get(`${environment.urlServicios}factura/list-month/${mes}`);
   }
 }

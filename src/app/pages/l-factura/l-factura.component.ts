@@ -8,7 +8,8 @@ import swal from 'sweetalert';
   styleUrls: ['./l-factura.component.css']
 })
 export class LFacturaComponent implements OnInit {
-  
+  public message='';
+  public informacion=false;
   public listaFactura : FacturaL[]=[];
   constructor(
     private facturaService: FacturaService,
@@ -36,5 +37,9 @@ export class LFacturaComponent implements OnInit {
     this.facturaService.buscar(termino).then((lista: any) => {
       this.listaFactura = lista;
     });
+  }
+  info(){
+    this.informacion=true;
+    this.message="puedes buscar por fecha, concepto, nombre del cliente o nombre del restaurante";
   }
 }

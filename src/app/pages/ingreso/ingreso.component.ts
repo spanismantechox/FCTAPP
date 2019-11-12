@@ -69,6 +69,7 @@ export class IngresoComponent implements OnInit {
       this.ingresoService.ingresos(ingreso).subscribe((data: any) => {
         if (data.message === 'ok') {
           swal("Exito! ","Ingreso añadido!","success");
+          this.formularioIngreso.reset();
         }else{
           this.errorIngreso=true;
           this.errorMessage=data.message;
@@ -95,6 +96,7 @@ export class IngresoComponent implements OnInit {
       this.gastoService.gastos(gasto).subscribe((data: any) => {
         if (data.message === 'ok') {
           swal("Exito!","Gasto añadido!","success");
+          this.formularioGasto.reset();
         }else{
           this.errorGasto=true;
           this.errorMessage=data.message;

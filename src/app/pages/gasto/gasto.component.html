@@ -3,3 +3,4 @@
 <app-error *ngIf=errorGasto [errorMessage]="errorMessage"></app-error>
 
 <app-editar-gastos (gastoBorrado)="recargarGastos($event)" (guardar)="modificar($event)" *ngFor="let gasto of listaGasto.gastos" [gasto]="gasto" [restaurantes]="listaGasto.restaurantes" [proveedores]="listaGasto.proveedores"></app-editar-gastos>
+<app-footer></app-footer>

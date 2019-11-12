@@ -3,3 +3,4 @@
 <app-error *ngIf="errorIngreso" [errorMessage]="errorMessage"></app-error>
 
 <app-editar-ingresos (ingresoBorrado)="recargarIngresos($event)" (guardar)="modificar($event)" *ngFor="let ingreso of listaIngreso.ingreso" [ingreso]="ingreso" [restaurantes]="listaIngreso.restaurantes"></app-editar-ingresos>
+<app-footer></app-footer>

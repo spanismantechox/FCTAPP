@@ -42,7 +42,7 @@ export class RRestauranteComponent implements OnInit {
         this.restaruanteService.crearRestaurante(restaurante).subscribe((data:any)=>{
           if(data.message==='Restaurante dado de alta correctamente!'){
             swal("Exito!","Restaurante creado correctamente!","success");
-            
+            this.formularioRegistroRestaurante.reset();
           }else{
             this.errorRestaurante=true;
             this.errorMessage=data.message;

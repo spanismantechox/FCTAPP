@@ -51,10 +51,23 @@
 
         <div class="calendar">
             <h1>Facturas creadas por mes</h1>
-            <kendo-calendar (activeViewDateChange)="onActiveDateChange($event)" (valueChange)="onChange($event)">
-                <kendo-calendar-messages today="Hoy" november="Noviembre">
-                </kendo-calendar-messages>
-            </kendo-calendar>
+            <p-calendar [(ngModel)]="value" [inline]="true" (onMonthChange)="onMonthChange($event)" [monthNavigator]="true" dateFormat="mm/yy"><span>&gt</span><span>&lt</span></p-calendar>
+            <button type="button" class="btn " (click)="FacturaMes()">Ver facturas del mes</button>
+        </div>
+    </div>
+    <div class="col-12 ">
+        <div *ngIf="mostrar">
+            <div *ngFor="let factura of listaFac" class="card bg-light" style="width: 18rem;">
+                <h5 class="card-header"><strong>Número de la factura: {{ factura.numeroFactura }}</strong></h5>
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted"><strong>Fecha: </strong>{{factura.fecha |date: 'dd-MM-yyyy'}}</h6>
+                    <hr>
+                    <p class="card-text"><strong>Concepto: </strong>{{factura.concepto}}</p>
+                    <p class="card-text"><strong>Nombre del restaurante: </strong>{{factura.nombreRestaurante}}</p>
+                    <p class="card-text"><strong>Nombre del cliente: </strong>{{factura.nombreCliente}}</p>
+                    <p class="card-text"><strong>Total Factura: {{ factura.totalFactura}} </strong></p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

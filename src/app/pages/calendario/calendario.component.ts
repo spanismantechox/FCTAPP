@@ -8,8 +8,10 @@ import frozen from "@amcharts/amcharts4/themes/frozen";
 import { Restaurante } from 'src/app/interfaces/restaurante';
 import { RestauranteService } from 'src/app/services/restaurante.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { debug } from 'util';
 import { FacturaService } from 'src/app/services/factura.service';
+import { FacturaL } from 'src/app/interfaces/factura';
+
+
 
 @Component({
   selector: 'app-calendario',
@@ -17,7 +19,8 @@ import { FacturaService } from 'src/app/services/factura.service';
   styleUrls: ['./calendario.component.css']
 })
 export class CalendarioComponent implements OnInit {
-
+  public value:Date;
+  public mostrar=false;
   public data: any[] = [];
   public title: string = "Total de ventas por fuente";
   public tab = 1;
@@ -28,8 +31,10 @@ export class CalendarioComponent implements OnInit {
   public year = (new Date()).getFullYear();
   public isCeroTodo = false;
   public formularioRestaurante: FormGroup;
+  public listaFac:FacturaL[]=[];
   private restauranteId: number;
   public numFac: number;
+  public mes=this.month;
   @ViewChild("calendar", { static: true }) public calendar: IgxCalendarComponent;
   @ViewChild("alert", { static: true }) public dialog: IgxDialogComponent;
 
@@ -54,8 +59,11 @@ export class CalendarioComponent implements OnInit {
     series.slices.template.strokeWidth = 1;
     series.slices.template.strokeOpacity = 1;
   }
+ 
   ngOnInit() {
-
+    
+  
+   
     this.formularioRestaurante = new FormGroup({
       nombreRestaurante: new FormControl('', Validators.required),
 
@@ -71,16 +79,15 @@ export class CalendarioComponent implements OnInit {
 
   }
 
-  onActiveDateChange(e) {
-    console.log(e)
-  }
+ 
+ 
 
-  onChange(e) {
-  }
+
 
   setSelectedDays() {
 
     let list: any = document.getElementsByClassName("k-calendar-view k-calendar-monthview");
+    
     for (let item of list) {
       let dias = item.children[2].children[0].children[1].children;
       for (let i of dias) {
@@ -241,7 +248,7 @@ export class CalendarioComponent implements OnInit {
       if (this.isCeroTodo) {
         this.chart = null;
         document.getElementById("chartdiv").innerHTML = "";
-        // document.getElementById("chartdiv").style.height ="0px";
+      
       }
     })
 
@@ -383,6 +390,17 @@ export class CalendarioComponent implements OnInit {
 
   changeRes() {
     this.restauranteId = this.formularioRestaurante.controls.nombreRestaurante.value;
+  }
+  public onMonthChange(e) {
+    return  this.mes=e.month;    
+  }
+
+  FacturaMes(){     
+    this.mostrar=true;  
+    this.facturaService.listaFacturaMes(this.mes).subscribe((data:any)=>{
+      this.listaFac= data.factura;
+      debugger
+    });
   }
 
 }

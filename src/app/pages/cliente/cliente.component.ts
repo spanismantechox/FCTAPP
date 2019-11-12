@@ -8,6 +8,8 @@ import swal from 'sweetalert';
   styleUrls: ['./cliente.component.css']
 })
 export class ClienteComponent implements OnInit {
+  public message='';
+  public informacion=false;
   public errorMessage = '';
   public errorModificar = false;
   public listaCliente: ClienteL[] = [];
@@ -41,5 +43,8 @@ export class ClienteComponent implements OnInit {
       this.listaCliente=lista;
     })
   }
-
+  info(){
+    this.informacion=true;
+    this.message="puedes buscar por direccion, nombre o correo electronico";
+  }
 }

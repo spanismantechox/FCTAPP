@@ -140,6 +140,9 @@ export class FacturaComponent implements OnInit {
         this.facturaService.crearFactura(factura).subscribe((data:any)=>{
           if(data.message==='Factura creada correctamente!'){
             swal("Exito!","Factura creada correctamente!","success");
+            this.formularioFactura.reset();
+            this.formularioCliente.reset();
+            this.formularioRestaurante.reset();
           }else{
             swal("Fallo!","Datos incorrectos","success");
           }

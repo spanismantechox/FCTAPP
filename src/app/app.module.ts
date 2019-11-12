@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule, LOCALE_ID } from '@angular/core';
 
 import {APP_ROUTING} from './app-routing.modules';
@@ -18,7 +18,7 @@ import {
 	IgxDialogModule
  } from "igniteui-angular";
  import {CalendarModule} from 'primeng/calendar';
- import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 
 import { ChartsModule } from '@progress/kendo-angular-charts';
@@ -52,8 +52,14 @@ import { EditarIngresosComponent } from './components/editar-ingresos/editar-ing
 import { DatePipe } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FooterComponent } from './components/footer/footer.component';
+registerLocaleData(localeEs); 
 
-registerLocaleData(localeEs);
+
+
+
 
 @NgModule({
   declarations: [
@@ -82,7 +88,10 @@ registerLocaleData(localeEs);
     EditarProveedoresComponent,
     EditarUsuariosComponent,
     EditarGastosComponent,
-    EditarIngresosComponent
+    EditarIngresosComponent,
+    FooterComponent,
+
+    
   ],
   imports: [
     BrowserModule,

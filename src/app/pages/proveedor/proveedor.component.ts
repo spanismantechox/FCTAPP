@@ -8,6 +8,8 @@ import swal from 'sweetalert';
   styleUrls: ['./proveedor.component.css']
 })
 export class ProveedorComponent implements OnInit {
+  public message='';
+  public informacion=false;
   public erroMessage = '';
   public errorModificar = false;
   public listaProveedor: Proveedor[] = [];
@@ -39,5 +41,8 @@ export class ProveedorComponent implements OnInit {
       this.listaProveedor=lista;
     })
   }
-  
+  info(){
+    this.informacion=true;
+    this.message="Puedes buscar por nombre o telefono";
+  }
 }

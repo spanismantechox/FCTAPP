@@ -37,3 +37,17 @@ button {
 .swal-overlay {
     background-color: rgba(54, 161, 161, 0.2);
 }
+
+button#info {
+    margin-left: 95%;
+    width: 25;
+    height: 25px;
+    background-color: rgb(54, 161, 161);
+    border: 1px solid rgb(54, 161, 161);
+}
+
+button#info img {
+    margin-top: -20px;
+    width: 15px;
+    height: 15px;
+}

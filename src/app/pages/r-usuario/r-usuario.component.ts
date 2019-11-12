@@ -34,6 +34,7 @@ export class RUsuarioComponent implements OnInit {
         this.usuarioService.crearUsuarios(usuario).subscribe((data:any)=>{
           if(data.message==='Usuario dado de alta correctamente!'){
             swal('Exito!','Usuario dado de alta correctamente!','success');
+            this.formularioRegistroUsuario.reset();
           }else{
             this.errorUsuario=true;
             this.errorMessage=data.message;

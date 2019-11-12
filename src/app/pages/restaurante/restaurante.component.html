@@ -1,6 +1,9 @@
 <app-menu (buscarEvent)="buscar($event)" [mostrarBuscador]="true"></app-menu>
+<button class="btn mr-sm-2" type="button" id="info" (click)="info()"><img src="assets/img/question.png" alt="info"></button>
+<app-ok-message *ngIf="informacion" [message]="message"></app-ok-message>
 <h1>Listado de los restaurantes</h1>
-<div class="container" >
+<div class="container">
     <app-error *ngIf="errorModificar" [errorMessage]="errorMessage"></app-error>
-    <app-editar-restaurante  (guardar)="modificar($event)" *ngFor="let restaurante of listaRestaurante" [restaurante]="restaurante"></app-editar-restaurante>
+    <app-editar-restaurante (guardar)="modificar($event)" *ngFor="let restaurante of listaRestaurante" [restaurante]="restaurante"></app-editar-restaurante>
 </div>
+<app-footer></app-footer>

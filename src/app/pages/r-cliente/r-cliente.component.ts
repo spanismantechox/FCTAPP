@@ -41,6 +41,7 @@ export class RClienteComponent implements OnInit {
       this.clienteService.altalCliente(cliente).subscribe((data: any) => {
         if (data.message === 'Cliente dado de alta correctamente!') {
           swal("Exito !","Cliente creado con exito","success");
+          this.formularioRegistroCliente.reset();
         }else{
           this.errorCliente=true;
           this.errorMessage=data.message;
