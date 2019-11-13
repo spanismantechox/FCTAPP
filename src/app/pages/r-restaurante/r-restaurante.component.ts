@@ -43,6 +43,7 @@ export class RRestauranteComponent implements OnInit {
           if(data.message==='Restaurante dado de alta correctamente!'){
             swal("Exito!","Restaurante creado correctamente!","success");
             this.formularioRegistroRestaurante.reset();
+            this.errorRestaurante=false;
           }else{
             this.errorRestaurante=true;
             this.errorMessage=data.message;

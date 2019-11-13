@@ -34,6 +34,7 @@ export class RProveedorComponent implements OnInit {
         if(data.message==='Proveedor dado de alta correctamente!'){
           swal("Exito!",'Proveedor creado correctamente',"success");
           this.formularioRegistroProveedor.reset();
+          this.errorProveedor=false;
         }else{
           this.errorProveedor=true;
           this.errorMessage=data.message;

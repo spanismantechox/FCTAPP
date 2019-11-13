@@ -35,6 +35,7 @@ export class RUsuarioComponent implements OnInit {
           if(data.message==='Usuario dado de alta correctamente!'){
             swal('Exito!','Usuario dado de alta correctamente!','success');
             this.formularioRegistroUsuario.reset();
+            this.errorUsuario=false;
           }else{
             this.errorUsuario=true;
             this.errorMessage=data.message;

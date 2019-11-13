@@ -23,7 +23,7 @@
                 <p> <strong> Elige el restaurante </strong></p>
                 <form [formGroup]="formularioRestaurante">
                     <div class="form-group">
-                        <label for="nombreRestaurante">Nombre del restaurante</label>
+                        <label for="nombreRestaurante">Nombre del restaurante &nbsp;</label>
                         <select name="nombreRestaurante" formControlName="nombreRestaurante" (change)="changeRes()">
                             <option *ngFor="let restaurante of listaRes" class="form-control"
                                 [value]="restaurante.id">
@@ -34,11 +34,10 @@
                     <button type="button" class="btn" id="cambiar" (click)="cambiarGrafica()">Cambiar</button>
                 </form>
             </div>
-
             <button *ngIf="tab!=1" class="btn atras" (click)="numeroMenos(tab)">&lt;</button>
             <button *ngIf="tab!=1" class="btn adelante" (click)="numeroMas(tab)">&gt;</button>
-
             <div id="chartdiv">
+
             </div>
             <div *ngIf="isCeroTodo" class="mensaje">
                 <h1>Lo sentimos no tiene datos</h1>
@@ -46,9 +45,9 @@
         </div>
 
     </div>
-    <div class=" col-3 calendario">
-
-        <div class="calendar">
+    <div class="col-3 calmax">
+        <div class="calendario">
+            <hr>
             <h1>Facturas creadas por mes</h1>
             <button type="button" class="btn " (click)="FacturaMes()">Ver facturas del mes</button>
             <br>
@@ -58,11 +57,11 @@
 </div>
 <div class="container row">
 
-    <div class="col-12">
+    <div class="col-12 ">
         <hr>
         <h1 *ngIf="mostarMesaage">No hay facturas en el mes: {{ mes+'/10/2019' | date:'MMMM'}}</h1>
         <div *ngIf="mostrar">
-            <div *ngFor="let factura of listaFac" class="card bg-light" style="width: 18rem;">
+            <div *ngFor="let factura of listaFac" class="card bg-light facturas" style="width: 18rem;">
                 <h1 *ngIf="mostar">Facturas creadas en el mes: {{ mes+'/10/2019' | date:'MMMM'}}</h1>
                 <h5 class="card-header"><strong>Número de la factura: {{ factura.numeroFactura }}</strong></h5>
                 <div class="card-body">

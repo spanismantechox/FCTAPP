@@ -1,4 +1,8 @@
-button{
-    background-color: rgb(54, 161, 161);  
-    color:white;
+button {
+    background-color: rgb(54, 161, 161);
+    color: white;
+}
+
+.cont {
+    width: 100%;
 }
