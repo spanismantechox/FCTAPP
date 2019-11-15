@@ -15,6 +15,7 @@ import { ProveedorComponent } from './pages/proveedor/proveedor.component';
 import { ClienteComponent } from './pages/cliente/cliente.component';
 import { RestauranteComponent } from './pages/restaurante/restaurante.component';
 import { AuthguardService } from './services/authguard.service';
+import { CrearFacturaUserComponent } from './pages/crear-factura-user/crear-factura-user.component';
 
 
 
@@ -37,6 +38,7 @@ const APP_ROUTES: Routes =[
     {path:'proveedor', component:ProveedorComponent, canActivate: [AuthguardService]},
     {path:'cliente', component:ClienteComponent, canActivate: [AuthguardService]},
     {path:'rRestaurante',component:RRestauranteComponent, canActivate: [AuthguardService]},
+    {path: 'crearFacturaUser',component:CrearFacturaUserComponent,canActivate:[AuthguardService]},
     {path:'**',pathMatch:'full', redirectTo:''}
 ];
 

@@ -55,6 +55,9 @@ import localeEs from '@angular/common/locales/es';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FooterComponent } from './components/footer/footer.component';
+
+import { CrearFacturaUserComponent } from './pages/crear-factura-user/crear-factura-user.component';
+import { MenuUserComponent } from './components/menu-user/menu-user.component';
 registerLocaleData(localeEs); 
 
 
@@ -90,6 +93,10 @@ registerLocaleData(localeEs);
     EditarGastosComponent,
     EditarIngresosComponent,
     FooterComponent,
+   
+    CrearFacturaUserComponent,
+   
+    MenuUserComponent,
 
     
   ],

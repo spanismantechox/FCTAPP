@@ -46,8 +46,8 @@ export class LoginComponent implements OnInit {
         contrasena:this.formularioLogin.controls.password.value
       }
       this.loginService.login(login).subscribe((data:any)=>{
-        if(data.message.toLowerCase()==='logeado'){
-
+        if(data.message==='Admin'){
+          
           if(this.formularioLogin.controls.recordar.value){
             localStorage.setItem("nombre",this.formularioLogin.controls.nombre.value);
             localStorage.setItem("contrasena",this.formularioLogin.controls.password.value);
@@ -61,7 +61,23 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("logged",'true');
           this.errorLogin=false;
           this.router.navigate(['home']);
-        }else{
+        }else if(data.message==='User'){
+      
+          if(this.formularioLogin.controls.recordar.value){
+            localStorage.setItem("nombre",this.formularioLogin.controls.nombre.value);
+            localStorage.setItem("contrasena",this.formularioLogin.controls.password.value);
+          }else{
+            localStorage.clear();
+          }
+          let usuario : Usuario ={
+            nombre: this.formularioLogin.controls.nombre.value
+          }
+          this.loginService.usuario=usuario;
+          localStorage.setItem("logged",'true');
+          this.errorLogin=false;
+          this.router.navigate(['crearFacturaUser']);
+        }
+        else{
           this.errorLogin=true;
           this.errorMessage=data.message;
           localStorage.clear();

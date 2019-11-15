@@ -1,0 +1,13 @@
+button {
+    margin-left: 90%;
+    background-color: rgb(54, 161, 161);
+    color: white;
+}
+
+p {
+    margin: 0 auto;
+}
+
+.cont {
+    width: 100%;
+}
