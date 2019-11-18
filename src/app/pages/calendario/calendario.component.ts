@@ -406,7 +406,7 @@ export class CalendarioComponent implements OnInit {
         this.mostrarMessage=true;
         this.mostrar=false;
       }
-      debugger
+    
     });
   }
 

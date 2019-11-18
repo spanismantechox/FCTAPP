@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +10,18 @@ export class AuthguardService {
     private route :Router
   ) { }
 
-  canActivate():boolean{
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean{
+    let userType = localStorage.getItem('userType');
     if(localStorage.getItem("logged")){
-      return true;
+      if(userType === 'User') {
+        if( state.url === '/crearFacturaUser') {
+          return true;
+        } else {
+          return false;
+        }
+      } else if(userType === 'Admin') {
+        return true;
+      }
     }
     this.route.navigateByUrl('');
     return false;
