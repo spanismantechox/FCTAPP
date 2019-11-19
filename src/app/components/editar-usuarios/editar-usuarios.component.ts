@@ -22,7 +22,7 @@ export class EditarUsuariosComponent implements OnInit {
   }
   habilitar(){
     this.editando=true;
-    this.formularioEditarUsuario.controls.nombre.enable();
+    this.formularioEditarUsuario.controls.nombre.disable();
     this.formularioEditarUsuario.controls.rol.enable();
   }
 

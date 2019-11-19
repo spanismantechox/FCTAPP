@@ -6,3 +6,10 @@ button {
 .cont {
     width: 100%;
 }
+.active{
+    background-color:black;
+    color:black !important;
+}
+.active a{
+    color:black;
+}

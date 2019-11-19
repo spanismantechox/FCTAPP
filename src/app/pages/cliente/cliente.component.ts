@@ -12,6 +12,7 @@ export class ClienteComponent implements OnInit {
   public informacion=false;
   public errorMessage = '';
   public errorModificar = false;
+  public errorBusqueda=false;
   public listaCliente: ClienteL[] = [];
   constructor(
     private clienteService: ClienteService,
@@ -41,6 +42,11 @@ export class ClienteComponent implements OnInit {
   buscar(termino){
     this.clienteService.buscar(termino).then((lista:any)=>{
       this.listaCliente=lista;
+      if(this.listaCliente.length===0){
+        this.errorBusqueda=true;
+      }else{
+        this.errorBusqueda=false;
+      }
     })
   }
   info(){

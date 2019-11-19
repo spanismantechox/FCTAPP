@@ -13,7 +13,8 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class RestauranteComponent implements OnInit {
   public errorMessage='';
-public message='';
+  public errorBusqueda=false;
+  public message='';
   public errorModificar=false;
   public informacion=false;
   public listaRestaurante: RestauranteC[] = [];
@@ -46,6 +47,11 @@ public message='';
   buscar(termino){
     this.restauranteService.buscar(termino).then((lista:any)=>{
       this.listaRestaurante=lista;
+      if(this.listaRestaurante.length===0){
+        this.errorBusqueda=true;
+      }else{
+        this.errorBusqueda=false;
+      }
     })
   }
 

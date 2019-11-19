@@ -1,8 +1,8 @@
-<div class="container card">    
-    <form [formGroup]="formModRestaurante" (ngSubmit)="guardarRest()" >
+<div class="container card">
+    <form [formGroup]="formModRestaurante" (ngSubmit)="guardarRest()">
         <div class="formGroup">
             <label for="nombre"> <strong> Nombre del restaurante</strong></label>
-            <input type="text" class="form-control" id="nombre" formControlName="nombre" >
+            <input type="text" class="form-control" id="nombre" formControlName="nombre">
         </div><br>
         <div class="formGroup">
             <label for="direccion"><strong>Dirección</strong></label>
@@ -10,7 +10,7 @@
         </div><br>
         <div class="formGroup">
             <label for="telefono"><strong>Telefóno</strong></label>
-            <input type="text" class="form-control" id="telefono" formControlName="telefono">
+            <input type="text" class="form-control" id="telefono" formControlName="telefono" maxlength="9">
         </div><br>
         <div class="formGroup">
             <label for="cif"><strong>CIF</strong></label>

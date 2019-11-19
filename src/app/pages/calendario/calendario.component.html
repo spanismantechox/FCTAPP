@@ -59,7 +59,7 @@
 
     <div class="col-12 ">
         <hr>
-        <h1 *ngIf="mostarMesaage">No hay facturas en el mes: {{ mes+'/10/2019' | date:'MMMM'}}</h1>
+        <h1 *ngIf="mostrarMessage" id="facturasVacias">No hay facturas en el mes de :&nbsp; {{ mes+'/10/2019' | date:'MMMM'}}</h1>
         <div *ngIf="mostrar">
             <div *ngFor="let factura of listaFac" class="card bg-light facturas" style="width: 18rem;">
                 <h1 *ngIf="mostar">Facturas creadas en el mes: {{ mes+'/10/2019' | date:'MMMM'}}</h1>

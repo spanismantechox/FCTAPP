@@ -1,9 +1,12 @@
-.card{
+.card {
     display: inline-block;
     margin-left: 20px;
     text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
-button{
-    background-color: rgb(54, 161, 161);  
-    color:white;
+
+button {
+    background-color: rgb(54, 161, 161);
+    color: white;
 }

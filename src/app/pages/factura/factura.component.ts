@@ -14,6 +14,7 @@ declare var $ : any;
   styleUrls: ['./factura.component.css']
 })
 export class FacturaComponent implements OnInit {
+  public dia=new Date();
   public errrorRestaurante = false;
   public errorMessage = '';
   public lista: Restaurante[] = [];
@@ -34,7 +35,7 @@ export class FacturaComponent implements OnInit {
 
 
   ngOnInit() {
-    $('.carousel').carousel('pause')
+    $('.carousel').carousel('pause');
     $('.carousel').on('slide.bs.carousel', (e) => {
       if(!this.clickNextButton){
         this.siguiente(e.from, e.direction);
@@ -106,6 +107,7 @@ export class FacturaComponent implements OnInit {
 
 
   siguiente(formNumber, dir = 'next') {
+    $('.carousel').carousel('pause');
     let valid = false;
     switch(formNumber) {
       case 0:
@@ -143,6 +145,9 @@ export class FacturaComponent implements OnInit {
             this.formularioFactura.reset();
             this.formularioCliente.reset();
             this.formularioRestaurante.reset();
+            this.formsCorrectos = [false, false, false];
+            this.slideActual = 0;
+            this.clickNextButton= false;
           }else{
             swal("Fallo!","Datos incorrectos","success");
           }

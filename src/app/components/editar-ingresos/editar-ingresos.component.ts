@@ -5,7 +5,7 @@ import { Ingreso } from 'src/app/interfaces/ingresos';
 import { RestauranteComponent } from 'src/app/pages/restaurante/restaurante.component';
 import { IngresoService } from 'src/app/services/ingreso.service';
 import { DatePipe } from '@angular/common';
-
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-editar-ingresos',
@@ -13,6 +13,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./editar-ingresos.component.css']
 })
 export class EditarIngresosComponent implements OnInit, OnChanges {
+  public dia=new Date(); 
   public editando=false;
   public formularioEditarIngreso:FormGroup;
   public selectRestaurante=0;
@@ -96,7 +97,7 @@ export class EditarIngresosComponent implements OnInit, OnChanges {
     let idIngreso=this.ingreso.idIngreso;
 
     this.ingresoService.eleiminarIngreso(idIngreso).subscribe((data:any)=>{
-      alert(data.message);
+      swal("Exito!",data.message,"success");
       this.ingresoBorrado.emit(true);
     })
   }

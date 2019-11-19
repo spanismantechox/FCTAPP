@@ -14,6 +14,7 @@ import swal from 'sweetalert';
   styleUrls: ['./editar-gastos.component.css']
 })
 export class EditarGastosComponent implements OnInit, OnChanges {
+  public dia=new Date(); 
   public editando = false;
   public formularioEditarGastos: FormGroup;
   public selectRestaurante = 0;

@@ -16,4 +16,6 @@
         <button class="btn btn-block" type="button" (click)="crearPdf(factura.numeroFactura)">Crear PDF</button>
     </div>
 </div>
+<h3 *ngIf="errorBusqueda">Lo sentimos no hay ninguna factura que coincida con los datos introducidos</h3>
+<br><br>
 <app-footer></app-footer>

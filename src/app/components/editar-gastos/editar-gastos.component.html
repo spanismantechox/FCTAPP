@@ -2,7 +2,7 @@
     <form [formGroup]="formularioEditarGastos" (ngSubmit)="guardarGasto()">
         <div class="formGroup">
             <label for="fecha"><strong>Fecha</strong></label>
-            <input type="text" class="form-control" id="fecha" formControlName="fecha">
+            <input type="text" class="form-control" id="fecha" formControlName="fecha" [max]="dia | date:'yyyy-MM-dd'">
         </div><br>
         <div class="formGroup">
 

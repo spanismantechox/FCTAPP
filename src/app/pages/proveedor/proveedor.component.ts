@@ -9,6 +9,7 @@ import swal from 'sweetalert';
 })
 export class ProveedorComponent implements OnInit {
   public message='';
+  public errorBusqueda=false;
   public informacion=false;
   public erroMessage = '';
   public errorModificar = false;
@@ -39,6 +40,11 @@ export class ProveedorComponent implements OnInit {
   buscar(termino){
     this.proveedorService.buscar(termino).then((lista:any)=>{
       this.listaProveedor=lista;
+      if(this.listaProveedor.length===0){
+        this.errorBusqueda=true;
+      }else{
+        this.errorBusqueda=false;
+      }
     })
   }
   info(){

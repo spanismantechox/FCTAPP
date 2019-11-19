@@ -23,6 +23,7 @@ export class IngresoComponent implements OnInit {
   public errorGasto = false;
   public lista: Restaurante[] = [];
   public listaP: Proveedor[] = [];
+  public dia=new Date(); 
 
   constructor(
     private ingresoService: IngresoService,
@@ -58,6 +59,7 @@ export class IngresoComponent implements OnInit {
 
   agregarIngreso() {
 
+    debugger;
     if (!this.formularioIngreso.controls.cantidad.errors && !this.formularioIngreso.controls.fuente.value.errors &&
       !this.formularioIngreso.controls.fecha.errors && !this.formularioIngreso.controls.restauranteId.errors) {
       let ingreso: Ingresos = {

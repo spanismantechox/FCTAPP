@@ -15,7 +15,7 @@
                     <form [formGroup]="formularioFactura">
                         <div class="formGroup">
                             <label for="fecha"><strong>Fecha</strong></label>
-                            <input type="date" class="form-control" id="fecha" formControlName="fecha">
+                            <input type="date" class="form-control" id="fecha" formControlName="fecha" [max]="dia | date:'yyyy-MM-dd'">
                         </div>
                         <div class="formGroup">
                             <label for="concepto"><strong>Concepto</strong></label>
@@ -112,4 +112,5 @@
         </div>
     </div>
 </div>
+<br><br>
 <app-footer></app-footer>

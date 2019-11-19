@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RUsuariosService } from 'src/app/services/r-usuarios.service';
 import { UsuarioC } from 'src/app/interfaces/usuario';
 import swal from 'sweetalert';
+import * as CryptoJS from 'crypto-js';
 @Component({
   selector: 'app-r-usuario',
   templateUrl: './r-usuario.component.html',
@@ -28,7 +29,7 @@ export class RUsuarioComponent implements OnInit {
       !this.formularioRegistroUsuario.controls.rol.value.errors){
         let usuario: UsuarioC={
           nombre:this.formularioRegistroUsuario.controls.nombre.value,
-          contrasena:this.formularioRegistroUsuario.controls.contrasena.value,
+          contrasena:CryptoJS.enc.Hex.stringify(CryptoJS.SHA1(this.formularioRegistroUsuario.controls.contrasena.value)),
           rol:this.formularioRegistroUsuario.controls.rol.value
         }
         this.usuarioService.crearUsuarios(usuario).subscribe((data:any)=>{

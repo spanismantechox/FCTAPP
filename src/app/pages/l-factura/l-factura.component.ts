@@ -10,6 +10,7 @@ import swal from 'sweetalert';
 export class LFacturaComponent implements OnInit {
   public message='';
   public informacion=false;
+  public errorBusqueda=false;
   public listaFactura : FacturaL[]=[];
   constructor(
     private facturaService: FacturaService,
@@ -36,6 +37,11 @@ export class LFacturaComponent implements OnInit {
   buscar(termino){
     this.facturaService.buscar(termino).then((lista: any) => {
       this.listaFactura = lista;
+      if(this.listaFactura.length===0){
+        this.errorBusqueda=true;
+      }else{
+        this.errorBusqueda=false;
+      }
     });
   }
   info(){

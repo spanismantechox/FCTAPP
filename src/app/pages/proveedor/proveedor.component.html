@@ -4,4 +4,6 @@
 <h1>Listado de los proveedores</h1>
 <app-error *ngIf="errorProveedor" [errorMessage]="errorMessage"></app-error>
 <app-editar-proveedores (guardar)="modificar($event)" *ngFor="let proveedor of listaProveedor" [proveedor]="proveedor"></app-editar-proveedores>
+<h3 *ngIf="errorBusqueda">Lo sentimos no hay ningun proveedor que coincida con los datos introducidos</h3>
+<br><br>
 <app-footer></app-footer>

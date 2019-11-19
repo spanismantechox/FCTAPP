@@ -5,5 +5,8 @@
 <div class="container">
     <app-error *ngIf="errorModificar" [errorMessage]="errorMessage"></app-error>
     <app-editar-restaurante (guardar)="modificar($event)" *ngFor="let restaurante of listaRestaurante" [restaurante]="restaurante"></app-editar-restaurante>
+    <h3 *ngIf="errorBusqueda">Lo sentimos no hay ningun restaurante que coincida con los datos introducidos</h3>
 </div>
+<br>
+
 <app-footer></app-footer>

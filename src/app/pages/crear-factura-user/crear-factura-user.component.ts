@@ -15,6 +15,7 @@ declare var $ : any;
   styleUrls: ['./crear-factura-user.component.css']
 })
 export class CrearFacturaUserComponent implements OnInit {
+  public dia=new Date(); 
   public errrorRestaurante = false;
   public errorMessage = '';
   public lista: Restaurante[] = [];

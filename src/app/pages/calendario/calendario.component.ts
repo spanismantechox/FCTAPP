@@ -20,6 +20,7 @@ import { FacturaL } from 'src/app/interfaces/factura';
 })
 export class CalendarioComponent implements OnInit {
   public value:Date;
+  public boton=true;
   public mostrar=false;
   public mostrarMessage=false;
   public data: any[] = [];
@@ -116,6 +117,7 @@ export class CalendarioComponent implements OnInit {
     if (tab == 2) {
       this.periodo = "mensual";
       this.month = this.month + 1;
+  
 
       if (this.month > 12) {
         this.month = 1;
@@ -298,6 +300,7 @@ export class CalendarioComponent implements OnInit {
 
     if (this.tab == 2) {
       this.periodo = "mensual"
+      this.formularioRestaurante.controls.nombreRestaurante.reset();
       this.graficaMensualNombre(this.periodo, this.month, this.restauranteId);
 
     } else if (this.tab == 3) {
