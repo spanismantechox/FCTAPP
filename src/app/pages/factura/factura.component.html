@@ -1,7 +1,7 @@
 <app-menu></app-menu>
 <div class="row container">
     <div class="col-12">
-        <h1>Crear Facturas</h1>
+        <h1 class="titulo">Crear Facturas</h1>
 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -23,15 +23,15 @@
                         </div>
                         <div class="formGroup">
                             <label for="iva"><strong>IVA</strong></label>
-                            <input type="number" class="form-control" id="iva" formControlName="iva">
+                            <input type="number" class="form-control" id="iva" formControlName="iva" min="1" max="2" pattern="^[0-9]+">
                         </div>
                         <div class="formGroup">
                             <label for="totalC"><strong>Total concepto</strong></label>
-                            <input type="number" class="form-control" id="totalC" formControlName="totalC">
+                            <input type="number" class="form-control" id="totalC" formControlName="totalC" min="1" pattern="^[0-9]+">
                         </div>
                         <div class="formGroup">
                             <label for="totalF"><strong>Total factura</strong></label>
-                            <input type="number" class="form-control" id="totalF" formControlName="totalF">
+                            <input type="number" class="form-control" id="totalF" formControlName="totalF" min="1" pattern="^[0-9]+">
                         </div><br>
                         <button type="button" class="btn btn-block" (click)="siguiente(0)">Siguiente</button>
                     </form>

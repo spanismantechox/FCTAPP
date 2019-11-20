@@ -2,28 +2,28 @@
 
 <div class="container row">
     <div class="col-12">
-        <h2>Registro de Clientes</h2>
+        <h2 class="titulo">Registro de Clientes</h2>
         <app-error *ngIf="errorCliente" [errorMessage]="errorMessage"></app-error>
         <form [formGroup]="formularioRegistroCliente" (ngSubmit)="crearCliente()">
             <div class="formGroup">
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" formControlName="nombre">
+                <input type="text" class="form-control" id="nombre" formControlName="nombre"  maxlength="40" pattern="(?=.*[A-Z]).{40}" title="introduce solo letras">
             </div><br>
             <div class="formGroup">
                 <label for="email">Correo electrónico</label>
-                <input type="email" class="form-control" id="email" formControlName="email">
+                <input type="email" class="form-control" id="email" formControlName="email" title="introduce una direccion de correo valida">
             </div><br>
             <div class="formGroup">
                 <label for="cif">CIF</label>
-                <input type="text" class="form-control" id="cif" formControlName="cif">
+                <input type="text" class="form-control" id="cif" formControlName="cif" maxlength="9" pattern="(?=.*[A-Z]).{1}(?=.*\d).{7}(?=.*[A-Z]).{1}" title="debe contener dos letras mayusculas con el siguiente formato D1111111D sin guion entre medias">
             </div><br>
             <div class="formGroup">
                 <label for="direccion">Dirección</label>
-                <input type="text" class="form-control" id="direccion" formControlName="direccion">
+                <input type="text" class="form-control" id="direccion" formControlName="direccion" maxlength="40">
             </div><br>
             <div class="formGroup">
                 <label for="cp">Código Postal</label>
-                <input type="text" class="form-control" id="cp" formControlName="cp">
+                <input type="text" class="form-control" id="cp" formControlName="cp" maxlength="5"  pattern="(?=.*\d).{5}" title="introduce un formato correcto  00000">
             </div><br>
             <button type="submit" class="btn">Registrar</button>
         </form>

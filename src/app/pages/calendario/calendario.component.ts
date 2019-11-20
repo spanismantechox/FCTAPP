@@ -10,7 +10,7 @@ import { RestauranteService } from 'src/app/services/restaurante.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FacturaService } from 'src/app/services/factura.service';
 import { FacturaL } from 'src/app/interfaces/factura';
-
+import * as $ from 'jquery';
 
 
 @Component({
@@ -305,6 +305,7 @@ export class CalendarioComponent implements OnInit {
 
     } else if (this.tab == 3) {
       this.periodo = "anual"
+      this.formularioRestaurante.controls.nombreRestaurante.reset();
       this.graficaAnualNombre(this.periodo, this.year, this.restauranteId);
     }
   }
@@ -395,22 +396,27 @@ export class CalendarioComponent implements OnInit {
   changeRes() {
     this.restauranteId = this.formularioRestaurante.controls.nombreRestaurante.value;
   }
+
   public onMonthChange(e) {
     this.mostrar=false;
-    return  this.mes=e.month;    
- 
-  }
-
-  FacturaMes(){     
+    this.mes=e.month;    
     this.mostrar=true;  
     this.facturaService.listaFacturaMes(this.mes).subscribe((data:any)=>{
       this.listaFac= data.factura;
-      if(this.listaFac.length==0){
+      $('html, body').animate({
+        scrollTop: $("#facturasDiv").offset().top
+      }, 500);
+      if(this.listaFac.length===0){
         this.mostrarMessage=true;
         this.mostrar=false;
+      }else{
+        this.mostrarMessage=false;
+        this.mostrar=true;
       }
     
     });
+ 
   }
 
+ 
 }

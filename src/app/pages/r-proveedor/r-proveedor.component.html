@@ -2,16 +2,16 @@
 
 <div class="container row">
     <div class=col-12>
-        <h2>Registro de Proveedores</h2>
+        <h2 class="titulo">Registro de Proveedores</h2>
         <app-error *ngIf="errorProveedor" [errorMessage]="errorMessage"></app-error>
         <form [formGroup]="formularioRegistroProveedor" (ngSubmit)="crearProveedor()">
             <div class="formGroup">
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" formControlName="nombre">
+                <input type="text" class="form-control" id="nombre" formControlName="nombre" maxlength="40" pattern="(?=.*[A-Z]).{40}" title="introduce solo letras">
             </div><br>
             <div class="formGroup">
                 <label for="telefono">Teléfono</label>
-                <input type="text" class="form-control" id="telefono" formControlName="telefono" maxlength="9">
+                <input type="text" class="form-control" id="telefono" formControlName="telefono" maxlength="9" pattern="(?=.*\d).{9}" title="introduce solo caracteres numericos">
             </div><br>
             <button type="submit" class="btn">Registrar</button>
         </form>

@@ -6,7 +6,7 @@
         </div><br>
         <div>
             <label for="cantidad"><strong>Cantidad</strong></label>
-            <input type="number" class="form-control" id="cantidad" formControlName="cantidad">
+            <input type="number" class="form-control" id="cantidad" formControlName="cantidad" min="1" pattern="^[0-9]+">
         </div><br>
         <div>
             <label for="nombre_restaurante"><strong>Nombre del restaurante</strong></label>
@@ -17,7 +17,7 @@
             <input type="text" class="form-control" id="fuente" formControlName="fuente" [value]="ingreso.fuente">
 
         </div><br>
-        <button *ngIf="!editando" type="button" class="btn btn-block" (click)="habilitar()">Editar</button>
+        <button type="button" class="btn btn-block" (click)="habilitar()">Editar</button>
         <button *ngIf="editando" type="submit" class="btn btn-block">Guardar</button>
         <button *ngIf="!editando" type="button" class="btn btn-block" (click)="borrar()">Eliminar</button >
     </form>

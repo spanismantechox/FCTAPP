@@ -23,7 +23,7 @@ export class IngresoComponent implements OnInit {
   public errorGasto = false;
   public lista: Restaurante[] = [];
   public listaP: Proveedor[] = [];
-  public dia=new Date(); 
+  public dia = new Date();
 
   constructor(
     private ingresoService: IngresoService,
@@ -41,7 +41,7 @@ export class IngresoComponent implements OnInit {
     });
 
     this.formularioGasto = new FormGroup({
-      cantidad: new FormControl('', Validators.required),
+      cantidad: new FormControl('', Validators.min(1)),
       fecha: new FormControl('', Validators.required),
       idRestaurante: new FormControl('', Validators.required),
       idProveedor: new FormControl('', Validators.required)
@@ -58,8 +58,6 @@ export class IngresoComponent implements OnInit {
   }
 
   agregarIngreso() {
-
-    debugger;
     if (!this.formularioIngreso.controls.cantidad.errors && !this.formularioIngreso.controls.fuente.value.errors &&
       !this.formularioIngreso.controls.fecha.errors && !this.formularioIngreso.controls.restauranteId.errors) {
       let ingreso: Ingresos = {
@@ -70,20 +68,25 @@ export class IngresoComponent implements OnInit {
       }
       this.ingresoService.ingresos(ingreso).subscribe((data: any) => {
         if (data.message === 'ok') {
-          swal("Exito! ","Ingreso añadido!","success");
+          swal("Exito! ", "Ingreso añadido!", "success");
           this.formularioIngreso.reset();
-          this.errorIngreso=false;
-        }else{
-          this.errorIngreso=true;
-          this.errorMessage=data.message;
+          this.errorIngreso = false;
+        } else {
+          this.errorIngreso = true;
+          this.errorMessage = data.message;
         }
-      },(error)=>{
-        this.errorIngreso=true;
-        this.errorMessage= error.message;
+      }, (error) => {
+        this.errorIngreso = true;
+        this.errorMessage = error.message;
       });
     } else {
-      this.errorIngreso = true;
-      this.errorMessage = 'Necesitas todos los campos para apuntar un ingreso';
+      if (this.formularioIngreso.controls.cantidad.errors) {
+        this.errorIngreso = true;
+        this.errorMessage = 'Introduce un valor superior a 0';
+      } else {
+        this.errorIngreso = true;
+        this.errorMessage = 'Necesitas todos los campos para apuntar un ingreso';
+      }
     }
   }
   agregarGasto() {
@@ -98,20 +101,25 @@ export class IngresoComponent implements OnInit {
       }
       this.gastoService.gastos(gasto).subscribe((data: any) => {
         if (data.message === 'ok') {
-          swal("Exito!","Gasto añadido!","success");
-          this.errorGasto=false;
+          swal("Exito!", "Gasto añadido!", "success");
+          this.errorGasto = false;
           this.formularioGasto.reset();
-        }else{
-          this.errorGasto=true;
-          this.errorMessage=data.message;
+        } else {
+          this.errorGasto = true;
+          this.errorMessage = data.message;
         }
-      },(error)=>{
-        this.errorGasto=true;
-        this.errorMessage=error.message;
+      }, (error) => {
+        this.errorGasto = true;
+        this.errorMessage = error.message;
       });
     } else {
-      this.errorGasto = true;
-      this.errorMessage = 'Necesitas todos los campos para apuntar un gasto';
+      if (this.formularioGasto.controls.cantidad.errors) {
+        this.errorGasto = true;
+        this.errorMessage = 'Introduce un valor superior a 0';
+      } else {
+        this.errorGasto = true;
+        this.errorMessage = 'Necesitas todos los campos para apuntar un gasto';
+      }
     }
 
   }

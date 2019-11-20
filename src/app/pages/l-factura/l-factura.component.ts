@@ -9,6 +9,7 @@ import swal from 'sweetalert';
 })
 export class LFacturaComponent implements OnInit {
   public message='';
+  public mostrarMensaje=false;
   public informacion=false;
   public errorBusqueda=false;
   public listaFactura : FacturaL[]=[];
@@ -20,7 +21,13 @@ export class LFacturaComponent implements OnInit {
    
     this.facturaService.listaFactura().then((data:any)=>{
       this.listaFactura=data;
+      if(data.factura <= 0) {
+        this.mostrarMensaje = true;
+      }else {
+        this.mostrarMensaje = false;
+      }
     });
+    
   }
 
   crearPdf(id:number){
@@ -29,7 +36,7 @@ export class LFacturaComponent implements OnInit {
       if(data.message==='factura creada con exito!'){
         swal("Exito!",data.message,"success");
       }else{
-        swal("Fallo!", data.message ,"success");
+        swal("Fallo!", data.message ,"error");
       }
     });
   }

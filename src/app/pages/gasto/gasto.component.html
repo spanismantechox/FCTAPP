@@ -1,7 +1,8 @@
 <app-menu></app-menu>
-<h1>Listado de los gastos</h1>
+<h1 class="titulo">Listado de los gastos</h1>
 <app-error *ngIf=errorGasto [errorMessage]="errorMessage"></app-error>
-
+<h2 *ngIf="mostrarMensaje" class="titulo">No hay gastos creados</h2>
 <app-editar-gastos (gastoBorrado)="recargarGastos($event)" (guardar)="modificar($event)" *ngFor="let gasto of listaGasto.gastos" [gasto]="gasto" [restaurantes]="listaGasto.restaurantes" [proveedores]="listaGasto.proveedores"></app-editar-gastos>
 <br><br>
+
 <app-footer></app-footer>

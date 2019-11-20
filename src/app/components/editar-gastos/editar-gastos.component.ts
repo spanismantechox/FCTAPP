@@ -14,11 +14,12 @@ import swal from 'sweetalert';
   styleUrls: ['./editar-gastos.component.css']
 })
 export class EditarGastosComponent implements OnInit, OnChanges {
-  public dia=new Date(); 
+  public dia = new Date();
   public editando = false;
   public formularioEditarGastos: FormGroup;
   public selectRestaurante = 0;
   public selectProveedor = 0;
+  
   @Input() gasto: any;
   @Input() restaurantes: Restaurante;
   @Input() proveedores: Proveedor;
@@ -41,17 +42,23 @@ export class EditarGastosComponent implements OnInit, OnChanges {
   }
   ngOnInit() {
     this.formularioEditarGastos = new FormGroup({
-      fecha: new FormControl({ value: 
-        this.datePipe.transform(this.gasto.fecha, 'yyyy-MM-dd', this.locale),
-         disabled: true }, Validators.required),
+      fecha: new FormControl({
+        value:
+          this.datePipe.transform(this.gasto.fecha, 'yyyy-MM-dd', this.locale),
+        disabled: true
+      }, Validators.required),
       nombre_restaurante: new FormControl({ value: this.gasto.nombre_restaurante, disabled: true }, Validators.required),
       nombre_proveedor: new FormControl({ value: this.gasto.nombre_proveedor, disabled: true }, Validators.required),
       cantidad: new FormControl({ value: this.gasto.cantidad, disabled: true }, Validators.required)
+      
     });
+ 
+    
 
   }
 
   habilitar() {
+    
     this.editando = true;
 
     this.formularioEditarGastos.controls.fecha.disable();
@@ -61,40 +68,45 @@ export class EditarGastosComponent implements OnInit, OnChanges {
   }
 
   guardarGasto() {
+    
+    if (this.formularioEditarGastos.controls.cantidad.errors) {
+      swal("Error!","introduce un valor mayor a 0","error")
+    } else {
+      this.editando = false;
+      
+      let fecha = this.formularioEditarGastos.controls.fecha.value.split(".")[0];
+      fecha = fecha.replace(" ", "T");
+
+      this.gasto.fecha = fecha;
+      this.gasto.nombre_restaurante = this.formularioEditarGastos.controls.nombre_restaurante.value;
+      this.gasto.nombre_proveedor = this.formularioEditarGastos.controls.nombre_proveedor.value;
+      this.gasto.cantidad = this.formularioEditarGastos.controls.cantidad.value;
+
+
+      let g: GastoM = {
+        cantidad: this.gasto.cantidad,
+        fecha: this.gasto.fecha,
+        idGasto: this.gasto.idGasto,
+        idProveedor: parseInt(this.selectProveedor + ""),
+        idRestaurante: parseInt(this.selectRestaurante + "")
+      }
+      this.guardar.emit(g);
+
+      this.formularioEditarGastos.controls.fecha.disable();
+      this.formularioEditarGastos.controls.nombre_restaurante.disable();
+      this.formularioEditarGastos.controls.nombre_proveedor.disable();
+      this.formularioEditarGastos.controls.cantidad.disable();
+    }
+  }
+  borrar() {
+    this.gasto;
     this.editando = false;
 
-    let fecha = this.formularioEditarGastos.controls.fecha.value.split(".")[0];
-    fecha = fecha.replace(" ", "T");
-
-    this.gasto.fecha = fecha;
-    this.gasto.nombre_restaurante = this.formularioEditarGastos.controls.nombre_restaurante.value;
-    this.gasto.nombre_proveedor = this.formularioEditarGastos.controls.nombre_proveedor.value;
-    this.gasto.cantidad = this.formularioEditarGastos.controls.cantidad.value;
-
-
-    let g: GastoM = {
-      cantidad: this.gasto.cantidad,
-      fecha: this.gasto.fecha,
-      idGasto: this.gasto.idGasto,
-      idProveedor: parseInt(this.selectProveedor + ""),
-      idRestaurante: parseInt(this.selectRestaurante + "")
-    }
-    this.guardar.emit(g);
-
-    this.formularioEditarGastos.controls.fecha.disable();
-    this.formularioEditarGastos.controls.nombre_restaurante.disable();
-    this.formularioEditarGastos.controls.nombre_proveedor.disable();
-    this.formularioEditarGastos.controls.cantidad.disable();
-  }
-  borrar(){ 
-    this.gasto;
-    this.editando=false;
-    
-    let idGasto=this.gasto.idGasto;
-    this.gastoService.delGastos(idGasto).subscribe((data:any)=> {
-      swal("Exito!",data.message,"success");
+    let idGasto = this.gasto.idGasto;
+    this.gastoService.delGastos(idGasto).subscribe((data: any) => {
+      swal("Exito!", data.message, "success");
       this.gastoBorrado.emit(true);
-    }); 
+    });
 
   }
 

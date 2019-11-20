@@ -146,7 +146,7 @@ export class CrearFacturaUserComponent implements OnInit {
             this.formularioCliente.reset();
             this.formularioRestaurante.reset();
           }else{
-            swal("Fallo!","Datos incorrectos","success");
+            swal("Fallo!","Datos incorrectos","error");
           }
         });
 

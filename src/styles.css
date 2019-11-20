@@ -56,3 +56,16 @@ button#info img {
 .container {
     width: 100%;
 }
+
+.titulo {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+input:invalid {
+    border: 1px solid red;
+}
+
+input:valid {
+    border: 1px solid rgb(54, 161, 161);
+}

@@ -39,7 +39,7 @@ export class EditarClienteComponent implements OnInit {
   guardarCli(){
     this.editando= false;
     if(!this.formularioListaCliente.controls.email.valid) {
-      swal("Fallo!","error email mal","success")
+      swal("Fallo!","error email mal","error")
     } else {
       this.cliente.nombre = this.formularioListaCliente.controls.nombre.value;
       this.cliente.email= this.formularioListaCliente.controls.email.value;

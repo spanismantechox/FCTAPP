@@ -10,6 +10,7 @@ import swal from 'sweetalert';
 export class LIngresoComponent implements OnInit {
   public errorMessage='';
   public errorIngreso=false;
+  public mostrarMensaje=false;
   public listaIngreso: IngresoL[]=[];
   constructor(
     private ingresoService: IngresoService,
@@ -19,7 +20,13 @@ export class LIngresoComponent implements OnInit {
     
     this.ingresoService.listaIngresos().subscribe((data:any)=>{
       this.listaIngreso=data;
+      if(data.ingresos <= 0) {
+        this.mostrarMensaje = true;
+      }else {
+        this.mostrarMensaje = false;
+      }
     });
+    
   }
 
   modificar(e){
@@ -40,6 +47,11 @@ export class LIngresoComponent implements OnInit {
   recargarIngresos(e){
     this.ingresoService.listaIngresos().subscribe((data:any)=>{
       this.listaIngreso=data;
+      if(data.ingreso <= 0) {
+        this.mostrarMensaje = true;
+      }else {
+        this.mostrarMensaje = false;
+      }
     })
   }
 

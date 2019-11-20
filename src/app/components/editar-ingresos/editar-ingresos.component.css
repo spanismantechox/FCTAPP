@@ -7,3 +7,11 @@ div.card{
     display: inline-block;   
     width: 20rem;
 }
+button:active{
+    background-color:grey;
+    color:black;
+}
+button:focus{
+    background-color:grey;
+    color:black;
+}

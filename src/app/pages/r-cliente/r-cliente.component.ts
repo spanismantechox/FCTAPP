@@ -40,21 +40,26 @@ export class RClienteComponent implements OnInit {
       }
       this.clienteService.altalCliente(cliente).subscribe((data: any) => {
         if (data.message === 'Cliente dado de alta correctamente!') {
-          swal("Exito !","Cliente creado con exito","success");
+          swal("Exito !", "Cliente creado con exito", "success");
           this.formularioRegistroCliente.reset();
-          this.errorCliente=false;
-        }else{
-          this.errorCliente=true;
-          this.errorMessage=data.message;
+          this.errorCliente = false;
+        } else {
+          this.errorCliente = true;
+          this.errorMessage = data.message;
         }
       },
-      (error)=>{
-        this.errorCliente=true;
-        this.errorMessage=error.message;
-      });
+        (error) => {
+          this.errorCliente = true;
+          this.errorMessage = error.message;
+        });
     } else {
-      this.errorCliente = true;
-      this.errorMessage = 'Necesitas todos los campos para dar de alta a un cliente';
+      if (this.formularioRegistroCliente.controls.email.errors) {
+        this.errorCliente = true;
+        this.errorMessage = "por favor introduce una direccion de correo valida";
+      } else {
+        this.errorCliente = true;
+        this.errorMessage = 'Necesitas todos los campos para dar de alta a un cliente';
+      }
     }
   }
 

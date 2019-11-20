@@ -1,16 +1,17 @@
 <app-menu></app-menu>
 <div class="container row">
     <div class="col-12">
-        <h2>Registro de Usuarios</h2>
+        <h2 class="titulo">Registro de Usuarios</h2>
         <app-error *ngIf="errorUsuario" [errorMessage]="errorMessage"></app-error>
         <form [formGroup]="formularioRegistroUsuario" (ngSubmit)="altaUsuario()">
             <div class="formGroup">
                 <label for="nombre">Nombre del Usuario</label>
-                <input type="text" class="form-control" id="nombre" formControlName="nombre">
+                <input type="text" class="form-control" id="nombre" formControlName="nombre" maxlength="40" pattern="(?=.*[A-Z]).{40}" title="introduce solo letras">
             </div><br>
             <div class="formGroup">
                 <label for="contrasena">Contraseña</label>
-                <input type="password" class="form-control" id="contrasena" formControlName="contrasena">
+                <input type="password" class="form-control" id="contrasena" formControlName="contrasena" minlength="8" maxlength="15"pattern="(?=.*[A-Z]).{1}(?=.*\d)(?=.*[a-z]).{7}" 
+                        title="el formato de la contraseña es la primera en mayusucula y luego 7 caracteres alfa numericos">
             </div><br>
             <div>
                 <label for="rol">Rol del usuario</label>

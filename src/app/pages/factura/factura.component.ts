@@ -7,14 +7,14 @@ import { FormGroup, FormControl, Validators, FormsModule } from '@angular/forms'
 import { FacturaService } from 'src/app/services/factura.service';
 import { Factura } from 'src/app/interfaces/factura';
 import swal from 'sweetalert';
-declare var $ : any;
+declare var $: any;
 @Component({
   selector: 'app-factura',
   templateUrl: './factura.component.html',
   styleUrls: ['./factura.component.css']
 })
 export class FacturaComponent implements OnInit {
-  public dia=new Date();
+  public dia = new Date();
   public errrorRestaurante = false;
   public errorMessage = '';
   public lista: Restaurante[] = [];
@@ -24,32 +24,32 @@ export class FacturaComponent implements OnInit {
   public formularioCliente: FormGroup;
   restaurante: RestauranteC;
   cliente: Cliente;
-  public formsCorrectos: boolean [] = [false, false, false];
+  public formsCorrectos: boolean[] = [false, false, false];
   public slideActual: number = 0;
   public clickNextButton: boolean = false;
   constructor(
     private restauranteService: RestauranteService,
     private clienteService: ClienteService,
-    private facturaService:FacturaService,
+    private facturaService: FacturaService,
   ) { }
 
 
   ngOnInit() {
     $('.carousel').carousel('pause');
     $('.carousel').on('slide.bs.carousel', (e) => {
-      if(!this.clickNextButton){
+      if (!this.clickNextButton) {
         this.siguiente(e.from, e.direction);
       }
       this.clickNextButton = false;
-      if(e.to != 0) {
-        if (this.formsCorrectos[e.to-1]) {
+      if (e.to != 0) {
+        if (this.formsCorrectos[e.to - 1]) {
           return true;
         }
       } else if (e.to === 0) {
         return true;
       }
       return false;
-      });
+    });
 
     this.formularioFactura = new FormGroup({
       fecha: new FormControl('', Validators.required),
@@ -58,7 +58,7 @@ export class FacturaComponent implements OnInit {
       totalC: new FormControl('', Validators.required),
       totalF: new FormControl('', Validators.required),
     });
-    this.formularioRestaurante= new FormGroup({
+    this.formularioRestaurante = new FormGroup({
       restauranteId: new FormControl('', Validators.required),
       direccion: new FormControl({ value: '', disabled: true }, Validators.required),
       telefono: new FormControl({ value: '', disabled: true }, Validators.required),
@@ -109,47 +109,52 @@ export class FacturaComponent implements OnInit {
   siguiente(formNumber, dir = 'next') {
     $('.carousel').carousel('pause');
     let valid = false;
-    switch(formNumber) {
+    switch (formNumber) {
       case 0:
-        valid = this.formularioFactura.valid;
+        if (this.formularioFactura.controls.totalC.errors || this.formularioFactura.controls.totalF.errors || this.formularioFactura.controls.iva.errors) {
+          swal("Error", "Introduce un valor superior a 0 ", "error");
+        } else {
+          valid = this.formularioFactura.valid;
+        }
         break;
       case 1:
-          valid = this.formularioRestaurante.valid;
+        valid = this.formularioRestaurante.valid;
         break;
       case 2:
-          valid = this.formularioCliente.valid;
+        valid = this.formularioCliente.valid;
         break;
     }
-    this.formsCorrectos[formNumber] = valid; 
-    if(valid) {
+    this.formsCorrectos[formNumber] = valid;
+    if (valid) {
       this.clickNextButton = true;
-      if(dir === 'left') {
+      if (dir === 'left') {
         dir = 'next';
       } else if (dir === 'right') {
         dir = 'prev';
       }
-      if(formNumber === 2) {
-        let factura : Factura={
+      if (formNumber === 2) {
+        let factura: Factura = {
           fecha: this.formularioFactura.controls.fecha.value,
-          concepto:this.formularioFactura.controls.concepto.value,
-          iva:this.formularioFactura.controls.iva.value,
-          totalConcepto:this.formularioFactura.controls.totalC.value,
-          totalFactura:this.formularioFactura.controls.totalF.value,
-          idRestaurante:this.formularioRestaurante.controls.restauranteId.value,
-          idCliente:this.formularioCliente.controls.clienteId.value
+          concepto: this.formularioFactura.controls.concepto.value,
+          iva: this.formularioFactura.controls.iva.value,
+          totalConcepto: this.formularioFactura.controls.totalC.value,
+          totalFactura: this.formularioFactura.controls.totalF.value,
+          idRestaurante: this.formularioRestaurante.controls.restauranteId.value,
+          idCliente: this.formularioCliente.controls.clienteId.value
         }
-  
-        this.facturaService.crearFactura(factura).subscribe((data:any)=>{
-          if(data.message==='Factura creada correctamente!'){
-            swal("Exito!","Factura creada correctamente!","success");
+
+        this.facturaService.crearFactura(factura).subscribe((data: any) => {
+          if (data.message === 'Factura creada correctamente!') {
+            swal("Exito!", "Factura creada correctamente!", "success");
+            $('.carousel').carousel('next')
             this.formularioFactura.reset();
             this.formularioCliente.reset();
             this.formularioRestaurante.reset();
             this.formsCorrectos = [false, false, false];
             this.slideActual = 0;
-            this.clickNextButton= false;
-          }else{
-            swal("Fallo!","Datos incorrectos","success");
+            this.clickNextButton = false;
+          } else {
+            swal("Fallo!", "Datos incorrectos", "error");
           }
         });
 
@@ -158,5 +163,5 @@ export class FacturaComponent implements OnInit {
       }
     }
   }
- 
+
 }

@@ -10,6 +10,7 @@ import swal from 'sweetalert';
 export class GastoComponent implements OnInit {
   public errorGasto = false;
   public errorMessage = '';
+  public mostrarMensaje = false;
   public listaGasto: GastosL[] = [];
   constructor(
     private gastoService: GastoService,
@@ -18,14 +19,22 @@ export class GastoComponent implements OnInit {
   ngOnInit() {
     this.gastoService.listaGastos().subscribe((data: any) => {
       this.listaGasto = data;
-    });
+      if(data.gastos <= 0) {
+        this.mostrarMensaje = true;
+      }else {
+        this.mostrarMensaje = false;
+      }
+    });   
+    
   }
+  
+  
 
   modificar(e) {
 
     this.gastoService.modificarGastos(e).subscribe((data: any) => {
       if (data.message === 'Gasto modificado correctamente!') {
-        swal("Exito!","Gasto modificado correctamente!","success");
+        swal("Exito!", "Gasto modificado correctamente!", "success");
       } else {
         this.errorGasto = true;
         this.errorMessage = data.message;
@@ -34,12 +43,18 @@ export class GastoComponent implements OnInit {
       this.errorGasto = true;
       this.errorMessage = error.message;
     });
+   
   }
 
   recargarGastos(e) {
     this.gastoService.listaGastos().subscribe((data: any) => {
       this.listaGasto = data;
+      if(data.gastos <= 0) {
+        this.mostrarMensaje = true;
+      } else {
+        this.mostrarMensaje = false;
+      }
     });
-    
-  }
+   
+}
 }

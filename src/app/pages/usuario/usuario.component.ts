@@ -25,7 +25,7 @@ export class UsuarioComponent implements OnInit {
   modificar(e){
     this.usuarioService.modificarUsuarios(e).subscribe((data:any)=> {
       if(data.message==='Usuario modificado correctamente!'){
-        swal("Usuario modificado correctamente", "aceptar");
+        swal("Exito!","Usuario modificado correctamente", "success");
       }else{
         this.errorUsuario=true;
         this.errorMessage=data.message;
