@@ -111,12 +111,15 @@ export class FacturaComponent implements OnInit {
     let valid = false;
     switch (formNumber) {
       case 0:
-        if (this.formularioFactura.controls.totalC.errors || this.formularioFactura.controls.totalF.errors || this.formularioFactura.controls.iva.errors) {
-          swal("Error", "Introduce un valor superior a 0 ", "error");
+        if (this.formularioFactura.touched) {
+          debugger
+          if (this.formularioFactura.controls.totalC.errors || this.formularioFactura.controls.totalF.errors || this.formularioFactura.controls.iva.errors) {
+            swal("Error", "Introduce un valor superior a 0 ", "error");
+          }
         } else {
-          valid = this.formularioFactura.valid;
-        }
-        break;
+            valid = this.formularioFactura.valid;
+          }
+            break;
       case 1:
         valid = this.formularioRestaurante.valid;
         break;
