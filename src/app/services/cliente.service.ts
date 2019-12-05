@@ -21,6 +21,8 @@ export class ClienteService {
     return new Promise((resolve,reject)=>{
       this.http.get(`${environment.urlServicios}cliente/list`).subscribe((data:any)=>{
         this.listadoClientes=data;
+        // Ordena en orden alfabético por nombre.
+        this.listadoClientes.sort((a,b) => (a.nombre.toLowerCase() > b.nombre.toLowerCase()) ? 1 : ((b.nombre.toLowerCase() > a.nombre.toLowerCase()) ? -1 : 0)); 
         resolve(this.listadoClientes);
       });
     });

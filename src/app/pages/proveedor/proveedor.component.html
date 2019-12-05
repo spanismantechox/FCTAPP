@@ -1,9 +1,28 @@
 <app-menu (buscarEvent)="buscar($event)" [mostrarBuscador]="true"></app-menu>
+
+
 <button class="btn mr-sm-2" type="button" id="info" (click)="info()"><img src="assets/img/question.png" alt="info"></button>
+
+
 <app-ok-message *ngIf="informacion" [message]="message"></app-ok-message>
+
+
 <h1 class="titulo">Listado de los proveedores</h1>
+
+
+<p class="text-muted">Los proveedores seran mostrado alfabeticamente.</p>
+
+
 <app-error *ngIf="errorProveedor" [errorMessage]="errorMessage"></app-error>
+
+
 <app-editar-proveedores (guardar)="modificar($event)" *ngFor="let proveedor of listaProveedor" [proveedor]="proveedor"></app-editar-proveedores>
+
+
 <h3 *ngIf="errorBusqueda">Lo sentimos no hay ningun proveedor que coincida con los datos introducidos</h3>
+
+
 <br><br>
+
+
 <app-footer></app-footer>

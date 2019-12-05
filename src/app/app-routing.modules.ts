@@ -16,6 +16,7 @@ import { ClienteComponent } from './pages/cliente/cliente.component';
 import { RestauranteComponent } from './pages/restaurante/restaurante.component';
 import { AuthguardService } from './services/authguard.service';
 import { CrearFacturaUserComponent } from './pages/crear-factura-user/crear-factura-user.component';
+import { CalendarioComponent } from './pages/calendario/calendario.component';
 
 
 
@@ -39,6 +40,7 @@ const APP_ROUTES: Routes =[
     {path:'cliente', component:ClienteComponent, canActivate: [AuthguardService]},
     {path:'rRestaurante',component:RRestauranteComponent, canActivate: [AuthguardService]},
     {path: 'crearFacturaUser',component:CrearFacturaUserComponent,canActivate:[AuthguardService]},
+    {path: 'graficos',component:CalendarioComponent,canActivate:[AuthguardService]},
     {path:'**',pathMatch:'full', redirectTo:''}
 ];
 

@@ -1,9 +1,35 @@
-<app-menu></app-menu>
+<app-menu (buscarEvent)="buscar($event)" [mostrarBuscador]="true"></app-menu>
+
+
+<button class="btn mr-sm-2" type="button" id="info" (click)="info()"><img src="assets/img/question.png" alt="info"></button>
+
+
+<app-ok-message *ngIf="informacion" [message]="message"></app-ok-message>
+
+
 <h1 class="titulo">Lista de los ingresos</h1>
+
+
+<p class="text-muted ">Los ingresos y las busquedas se mostraran por fecha de creación en orden descendente</p>
+
+
 <app-error *ngIf="errorIngreso" [errorMessage]="errorMessage"></app-error>
 
+
 <app-editar-ingresos (ingresoBorrado)="recargarIngresos($event)" (guardar)="modificar($event)" *ngFor="let ingreso of listaIngreso.ingreso" [ingreso]="ingreso" [restaurantes]="listaIngreso.restaurantes"></app-editar-ingresos>
+
+
 <br><br>
-<h2 *ngIf="mostrarMensaje" class="titulo">No hay ingresos creados</h2>
+
+<h3 *ngIf="mostrarMensaje" class="titulo">No hay ingresos creados</h3>
+
+
 <br><br>
+
+
+<h3 *ngIf="errorBusqueda">Lo sentimos no hay ningun ingreso que coincida con los datos introducidos</h3>
+
+
+
+
 <app-footer></app-footer>

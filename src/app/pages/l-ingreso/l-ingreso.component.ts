@@ -11,6 +11,9 @@ export class LIngresoComponent implements OnInit {
   public errorMessage='';
   public errorIngreso=false;
   public mostrarMensaje=false;
+  public errorBusqueda=false;
+  public informacion=false;
+  public message='';
   public listaIngreso: IngresoL[]=[];
   constructor(
     private ingresoService: IngresoService,
@@ -18,7 +21,7 @@ export class LIngresoComponent implements OnInit {
 
   ngOnInit() {
     
-    this.ingresoService.listaIngresos().subscribe((data:any)=>{
+    this.ingresoService.listaIngresos().then((data:any)=>{
       this.listaIngreso=data;
       if(data.ingresos <= 0) {
         this.mostrarMensaje = true;
@@ -45,16 +48,30 @@ export class LIngresoComponent implements OnInit {
   }
 
   recargarIngresos(e){
-    this.ingresoService.listaIngresos().subscribe((data:any)=>{
+    this.ingresoService.listaIngresos().then((data:any)=>{
       this.listaIngreso=data;
       if(data.ingreso <= 0) {
         this.mostrarMensaje = true;
       }else {
         this.mostrarMensaje = false;
       }
+    });
+  }
+  buscar(termino){
+    this.ingresoService.buscar(termino).then((lista:any)=>{
+      this.listaIngreso=lista.ingreso;
+      if(this.listaIngreso.length===0){
+        this.errorBusqueda=true;
+      }else{
+        this.errorBusqueda=false;
+      }
     })
   }
 
+  info(){
+    this.informacion=true;
+    this.message="puedes buscar por nombre del restaurante, fecha o fuente"
+  }
 
 
 

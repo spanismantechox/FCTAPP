@@ -69,3 +69,17 @@ input:invalid {
 input:valid {
     border: 1px solid rgb(54, 161, 161);
 }
+
+p {
+    margin-left: 20px;
+}
+
+.card-group {
+    padding: 5px;
+    margin: 0 auto;
+    width: 60%;
+}
+
+.card {
+    margin-left: 20px;
+}

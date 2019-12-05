@@ -11,24 +11,27 @@ export class GastoComponent implements OnInit {
   public errorGasto = false;
   public errorMessage = '';
   public mostrarMensaje = false;
+  public errorBusqueda=false;
+  public message='';
+  public informacion=false;
   public listaGasto: GastosL[] = [];
   constructor(
     private gastoService: GastoService,
   ) { }
 
   ngOnInit() {
-    this.gastoService.listaGastos().subscribe((data: any) => {
+    this.gastoService.listaGastos().then((data: any) => {
       this.listaGasto = data;
-      if(data.gastos <= 0) {
+      if (data.gastos <= 0) {
         this.mostrarMensaje = true;
-      }else {
+      } else {
         this.mostrarMensaje = false;
       }
-    });   
-    
+    });
+
   }
-  
-  
+
+
 
   modificar(e) {
 
@@ -43,18 +46,32 @@ export class GastoComponent implements OnInit {
       this.errorGasto = true;
       this.errorMessage = error.message;
     });
-   
+
   }
 
   recargarGastos(e) {
-    this.gastoService.listaGastos().subscribe((data: any) => {
+    this.gastoService.listaGastos().then((data: any) => {
       this.listaGasto = data;
-      if(data.gastos <= 0) {
+      if (data.gastos <= 0) {
         this.mostrarMensaje = true;
       } else {
         this.mostrarMensaje = false;
       }
     });
-   
-}
+
+  }
+  buscar(termino){
+    this.gastoService.buscar(termino).then((lista:any)=>{
+      this.listaGasto=lista.gastos;
+      if(this.listaGasto.length===0){
+        this.errorBusqueda=true;
+      }else{
+        this.errorBusqueda=false;
+      }
+    })
+  }
+  info(){
+    this.informacion=true;
+    this.message="puedes buscar por fecha, nombre del proveedor o nombre del restaurante";
+  }
 }

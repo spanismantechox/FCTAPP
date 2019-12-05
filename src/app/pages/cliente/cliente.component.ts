@@ -29,6 +29,10 @@ export class ClienteComponent implements OnInit {
     this.clienteService.modificarCliente(e).subscribe((data: any) => {
       if (data.message === 'Cliente modificado correctamente!') {
         swal("Exito!","Cliente modificado correctamente!","success");
+        // Volvemos a obtener la lista para que si se cambia el nombre se vuelva a reordenar solito.
+        this.clienteService.listaCliente().then((data: any) => {
+          this.listaCliente = data;
+        });
       } else {
         this.errorModificar = true;
         this.errorMessage = data.message;

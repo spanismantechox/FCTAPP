@@ -111,15 +111,22 @@ export class FacturaComponent implements OnInit {
     let valid = false;
     switch (formNumber) {
       case 0:
-        if (this.formularioFactura.touched) {
-          debugger
-          if (this.formularioFactura.controls.totalC.errors || this.formularioFactura.controls.totalF.errors || this.formularioFactura.controls.iva.errors) {
-            swal("Error", "Introduce un valor superior a 0 ", "error");
-          }
+        debugger
+        if (!this.formularioFactura.touched) {
+          swal("Error", "Rellena todos los campos antes de pasar al siguiente", "error");
         } else {
+          if (!this.formularioFactura.controls.totalC.status) {
+            swal("Error", "Introduce un valor superior a 0 en el total concepto", "error");
+          } else if (!this.formularioFactura.controls.totalC.status) {
+            swal("Error", "Introduce un valor superior a 0 en el total factura", "error");
+          } else if (!this.formularioFactura.controls.iva.status) {
+            swal("Error", "Introduce un valor superior a 0 en iva", "error");
+          }else{
             valid = this.formularioFactura.valid;
           }
-            break;
+          
+        }
+        break;
       case 1:
         valid = this.formularioRestaurante.valid;
         break;

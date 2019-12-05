@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div class="container row">
     <div class="col-9 grafica">
 
@@ -49,7 +50,7 @@
         <div class="calendario">
             <hr>
             <h1>Facturas creadas por mes</h1>
-            
+
             <br>
             <p-calendar [(ngModel)]="value" [inline]="true" (onMonthChange)="onMonthChange($event)" [monthNavigator]="true" dateFormat="mm/yy"><span>&gt</span><span>&lt</span></p-calendar>
         </div>
@@ -60,6 +61,7 @@
     <div class="col-12 " id="facturasDiv">
         <hr>
         <h1 *ngIf="mostrarMessage" id="facturasVacias">No hay facturas en el mes de :&nbsp; {{ mes+'/10/2019' | date:'MMMM'}}</h1>
+        <p *ngIf="mostrar" class="text-muted ">Las facturas se mostrara ordenadas por fecha, de la última creada a la primera.</p>
         <div *ngIf="mostrar">
             <div *ngFor="let factura of listaFac" class="card bg-light facturas" style="width: 18rem;">
                 <h1 *ngIf="mostar">Facturas creadas en el mes: {{ mes+'/10/2019' | date:'MMMM'}}</h1>
@@ -76,3 +78,5 @@
         </div>
     </div>
 </div>
+<br><br>
+<app-footer></app-footer>

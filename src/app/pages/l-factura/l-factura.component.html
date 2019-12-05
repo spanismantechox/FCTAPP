@@ -3,6 +3,8 @@
 <app-ok-message *ngIf="informacion" [message]="message"></app-ok-message>
 <h1 class="titulo">Listado de facturas</h1>
 
+<p class="text-muted ">Las facturas y las busquedas se mostraran por fecha de creación en orden descendente</p>
+
 <div *ngFor="let factura of listaFactura" class="card bg-light" style="width: 18rem;">
     <h5 class="card-header"><strong>Número de la factura: {{ factura.numeroFactura }}</strong></h5>
     <div class="card-body">
@@ -19,4 +21,6 @@
 <h2 *ngIf="mostrarMensaje" class="titulo">No hay ingresos creados</h2>
 <h2 *ngIf="errorBusqueda">Lo sentimos no hay ninguna factura que coincida con los datos introducidos</h2>
 <br><br>
+
+
 <app-footer></app-footer>

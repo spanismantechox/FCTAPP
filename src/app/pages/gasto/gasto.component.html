@@ -1,8 +1,30 @@
-<app-menu></app-menu>
+<app-menu (buscarEvent)="buscar($event)" [mostrarBuscador]="true"></app-menu>
+
+
+<button class="btn mr-sm-2" type="button" id="info" (click)="info()"><img src="assets/img/question.png" alt="info"></button>
+
+
 <h1 class="titulo">Listado de los gastos</h1>
+
+
+<p class="text-muted">Los gastos y las busquedas se mostraran por fecha de creación en orden descendente</p>
+
+
+
+<app-ok-message *ngIf="informacion" [message]="message"></app-ok-message>
+
+
 <app-error *ngIf=errorGasto [errorMessage]="errorMessage"></app-error>
+
+
 <h2 *ngIf="mostrarMensaje" class="titulo">No hay gastos creados</h2>
+
+
 <app-editar-gastos (gastoBorrado)="recargarGastos($event)" (guardar)="modificar($event)" *ngFor="let gasto of listaGasto.gastos" [gasto]="gasto" [restaurantes]="listaGasto.restaurantes" [proveedores]="listaGasto.proveedores"></app-editar-gastos>
+
+<h3 *ngIf="errorBusqueda">Lo sentimos no hay ningun gasto que coincida con los datos introducidos</h3>
+
+
 <br><br>
 
 <app-footer></app-footer>

@@ -17,6 +17,7 @@ public listaRestuarantes(){
     
     this.http.get(`${environment.urlServicios}restaurante/list`).subscribe((data:any)=>{
       this.listadoRestaurantes=data;
+      this.listadoRestaurantes.sort((a,b)=>(a.nombre.toLowerCase()>b.nombre.toLowerCase())?1: ((b.nombre.toLowerCase()>a.nombre.toLowerCase()) ?-1:0));
       resolve(this.listadoRestaurantes);
     
     });

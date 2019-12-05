@@ -33,6 +33,9 @@ export class RestauranteComponent implements OnInit {
     this.restauranteService.modificarRestaurante(e).subscribe((data:any)=>{
       if(data.message==='Restaurante modificado correctamente!'){
         swal("Exito!","Restaurante modificado correctamente!", "success");
+        this.restauranteService.listaRestuarantes().then((data:any)=>{
+          this.listaRestaurante=data;
+        })
         
       }else{
         this.errorModificar=true;
